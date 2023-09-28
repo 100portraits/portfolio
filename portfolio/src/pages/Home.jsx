@@ -12,7 +12,7 @@ const Home = () => {
                         <h1 className=" text-2xl ">Web design / photography / data science</h1>
                         <h1 className="text-xl">Computational Social Science @ University of Amsterdam</h1>
                     </div>
-                    <div className='self-end flex flex-row gap-2 text-3xl'>
+                    <div className='self-center flex flex-row gap-2 text-4xl'>
                         <FaGithub />
                         <FaInstagram/>
 
