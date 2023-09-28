@@ -1,5 +1,5 @@
-import {FaInstagram} from 'react-icons/fa/index.esm'
-import {FaGithub} from 'react-icons/fa/index.esm'
+import {FaInstagram} from 'react-icons/fa/'
+import {FaGithub} from 'react-icons/fa/'
 
 const Home = () => {
     return (
