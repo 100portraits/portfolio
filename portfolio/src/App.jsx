@@ -7,6 +7,10 @@ import Blog from './pages/Blog'
 import Projects from './pages/Projects'
 import About from './pages/about'
 
+//work
+import Research from './pages/work/Research'
+import Photography from './pages/work/Photography'
+
 function App() {
 
   return (
@@ -17,6 +21,10 @@ function App() {
       <Route path="/about" element={<About />} />
       <Route path="/projects" element={<Projects />} />
       <Route path="/blog" element={<Blog />} />
+
+      <Route path="/work/research" element={<Research />} />
+      <Route path="/work/photography" element={<Photography />} />
+
 
     </Routes>
   )

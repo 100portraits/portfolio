@@ -20,26 +20,26 @@ const Home = () => {
                     </div>
                 </div>
                 <div className='grid grid-cols-1 md:grid-cols-2 gap-3 h-[40vh] md'>
-                    <div className='bg-slate-100 h-full flex hover:bg-slate-200 group'>
+                    <Link to='/work'><div className='bg-slate-100 h-full flex hover:bg-slate-200 group'>
                         <h1 className='text-2xl font-semibold m-10 group-hover:underline underline-offset-4'>
-                            <Link to='/work'>My work<FaExternalLinkAlt className='inline text-sm ml-2'/></Link>
+                            My work<FaExternalLinkAlt className='inline text-sm ml-2'/>
                         </h1>
-                    </div>
-                    <div className='bg-slate-100 h-full flex hover:bg-slate-200 group'>
+                    </div></Link>
+                    <Link to='/about'> <div className='bg-slate-100 h-full flex hover:bg-slate-200 group'>
                         <h1 className='text-2xl font-semibold m-10 group-hover:underline underline-offset-4'>
-                            <Link to='/about'> About me<FaExternalLinkAlt className='inline text-sm ml-2'/></Link>
+                            About me<FaExternalLinkAlt className='inline text-sm ml-2'/>
                         </h1>
-                    </div>
-                    <div className='bg-slate-100 h-full flex hover:bg-slate-200 group'>
+                    </div></Link>
+                    <Link to='/blog'><div className='bg-slate-100 h-full flex hover:bg-slate-200 group'>
                         <h1 className='text-2xl font-semibold m-10 group-hover:underline underline-offset-4'>
-                            <Link to='/blog'>Blog<FaExternalLinkAlt className='inline text-sm ml-2'/></Link>
+                            Blog<FaExternalLinkAlt className='inline text-sm ml-2'/>
                         </h1>
-                    </div>
-                    <div className='bg-slate-100 h-full flex hover:bg-slate-200 group'>
+                    </div></Link>
+                    <Link to='/projects'><div className='bg-slate-100 h-full flex hover:bg-slate-200 group'>
                         <h1 className='text-2xl font-semibold m-10 group-hover:underline underline-offset-4'>
-                            <Link to='/projects'>Projects<FaExternalLinkAlt className='inline text-sm ml-2'/></Link>
+                            Projects<FaExternalLinkAlt className='inline text-sm ml-2'/>
                         </h1>
-                    </div>
+                    </div></Link>
                 </div>
             
 

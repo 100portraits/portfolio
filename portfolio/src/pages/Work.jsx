@@ -3,7 +3,7 @@ import {FaGithub} from 'react-icons/fa/'
 import {FaExternalLinkAlt} from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 
-const Work = () => {
+const Home = () => {
     return (
         <>
             <div className="max-w-screen-md md:max-w-screen-lg p-10 mx-auto">
@@ -20,17 +20,17 @@ const Work = () => {
                     </div>
                 </div>
                 <div className='grid grid-cols-1 md:grid-cols-2 gap-3 h-[40vh] md'>
-                    <div className='bg-slate-100 h-full flex hover:bg-slate-200 group'>
+                    <Link to='/work/research'><div className='bg-slate-100 h-full flex hover:bg-slate-200 group'>
                         <h1 className='text-2xl font-semibold m-10 group-hover:underline underline-offset-4'>
-                            <Link to='/work'>Research Assistant<FaExternalLinkAlt className='inline text-sm ml-2'/></Link>
+                            Research Assistant<FaExternalLinkAlt className='inline text-sm ml-2'/>
                         </h1>
-                    </div>
-                    <div className='bg-slate-100 h-full flex hover:bg-slate-200 group'>
+                    </div></Link>
+                    <Link to='/work/photography'> <div className='bg-slate-100 h-full flex hover:bg-slate-200 group'>
                         <h1 className='text-2xl font-semibold m-10 group-hover:underline underline-offset-4'>
                             Photographer<FaExternalLinkAlt className='inline text-sm ml-2'/>
                         </h1>
-                    </div>
-                    
+                    </div></Link>
+
                 </div>
             
 
@@ -39,4 +39,4 @@ const Work = () => {
     );
 }
 
-export default Work;
+export default Home;
