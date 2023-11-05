@@ -5,7 +5,7 @@ import Home from './pages/Home'
 import Work from './pages/Work'
 import Blog from './pages/Blog'
 import Projects from './pages/Projects'
-import About from './pages/about'
+import About from './pages/About'
 
 //work
 import Research from './pages/work/Research'
