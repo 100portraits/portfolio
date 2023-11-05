@@ -1,6 +1,8 @@
 import {FaInstagram} from 'react-icons/fa/'
 import {FaGithub} from 'react-icons/fa/'
 import {FaExternalLinkAlt} from 'react-icons/fa'
+import { Link } from 'react-router-dom'
+
 const Home = () => {
     return (
         <>
@@ -20,22 +22,22 @@ const Home = () => {
                 <div className='grid grid-cols-1 md:grid-cols-2 gap-3 h-[40vh] md'>
                     <div className='bg-slate-100 h-full flex hover:bg-slate-200 group'>
                         <h1 className='text-2xl font-semibold m-10 group-hover:underline underline-offset-4'>
-                            My work<FaExternalLinkAlt className='inline text-lg ml-2'/>
+                            <Link to='/work'>My work<FaExternalLinkAlt className='inline text-sm ml-2'/></Link>
                         </h1>
                     </div>
                     <div className='bg-slate-100 h-full flex hover:bg-slate-200 group'>
                         <h1 className='text-2xl font-semibold m-10 group-hover:underline underline-offset-4'>
-                            About me<FaExternalLinkAlt className='inline text-lg ml-2'/>
+                            <Link to='/about'> About me<FaExternalLinkAlt className='inline text-sm ml-2'/></Link>
                         </h1>
                     </div>
                     <div className='bg-slate-100 h-full flex hover:bg-slate-200 group'>
                         <h1 className='text-2xl font-semibold m-10 group-hover:underline underline-offset-4'>
-                            Blog<FaExternalLinkAlt className='inline text-lg ml-2'/>
+                            <Link to='/blog'>Blog<FaExternalLinkAlt className='inline text-sm ml-2'/></Link>
                         </h1>
                     </div>
                     <div className='bg-slate-100 h-full flex hover:bg-slate-200 group'>
                         <h1 className='text-2xl font-semibold m-10 group-hover:underline underline-offset-4'>
-                            Projects<FaExternalLinkAlt className='inline text-lg ml-2'/>
+                            <Link to='/projects'>Projects<FaExternalLinkAlt className='inline text-sm ml-2'/></Link>
                         </h1>
                     </div>
                 </div>
