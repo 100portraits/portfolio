@@ -3,7 +3,7 @@ import {FaGithub} from 'react-icons/fa/'
 import {FaExternalLinkAlt} from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 
-const Home = () => {
+const Work = () => {
     return (
         <>
             <div className="max-w-screen-md md:max-w-screen-lg p-10 mx-auto">
@@ -39,4 +39,4 @@ const Home = () => {
     );
 }
 
-export default Home;
+export default Work;

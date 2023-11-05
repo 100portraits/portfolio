@@ -11,6 +11,10 @@ import About from './pages/about'
 import Research from './pages/work/Research'
 import Photography from './pages/work/Photography'
 
+//projects
+import Portraits from './pages/projects/Portraits'
+import Toolkit from './pages/projects/Toolkit'
+
 function App() {
 
   return (
@@ -22,9 +26,12 @@ function App() {
       <Route path="/projects" element={<Projects />} />
       <Route path="/blog" element={<Blog />} />
 
+      
       <Route path="/work/research" element={<Research />} />
       <Route path="/work/photography" element={<Photography />} />
 
+      <Route path="/projects/portraits" element={<Portraits />} />
+      <Route path="/projects/toolkit" element={<Toolkit />} />
 
     </Routes>
   )
