@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 const Home = () => {
     return (
         <>
-            <div className="max-w-screen-md md:max-w-screen-lg p-10 mx-auto">
+            <div className="max-w-screen-md md:max-w-screen-lg p-10 mx-auto ">
                 <div className="text-left mt-6 md:mt-14 mb-4 md:flex justify-between">
                     <div className="">
                         <h1 className="pb-1 text-5xl md:text-6xl font-semibold">Sahir Dhanani Enarth</h1>

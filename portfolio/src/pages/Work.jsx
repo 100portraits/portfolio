@@ -8,10 +8,10 @@ const Work = () => {
     return (
         <>
             <div className="max-w-screen-md md:max-w-screen-lg p-10 mx-auto">
-                <div className="text-left mt-6 md:mt-14 mb-4 md:flex justify-between">
+                <div className="text-left mt-6 md:mt-12 mb-4 md:flex justify-between">
                     <div className="">
-                            <Link to='/'><span className='mb-4'><IoIosArrowBack className='inline-block'/><h1 className='underline inline-block'>Back</h1></span></Link>
-                            <h1 className="mt-3 pb-3 text-5xl md:text-6xl font-semibold">My Work</h1>
+                            <Link to='/'><div className='mb-4 '><IoIosArrowBack className='inline-block'/><h1 className='underline inline-block'>Back</h1></div></Link>
+                            <h1 className=" pb-3 text-5xl md:text-6xl font-semibold">My Work</h1>
                         <h1 className="text-lg md:text-xl ">Here's how I've kept busy since moving to Amsterdam in 2022.</h1>
                     </div>
                     <div className='flex my-3 md:self-center flex-row gap-2 text-2xl md:text-4xl'>
