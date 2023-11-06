@@ -30,16 +30,17 @@ const Home = () => {
                             About me<FaExternalLinkAlt className='inline text-sm ml-2'/>
                         </h1>
                     </div></Link>
-                    <Link to='/blog'><div className='bg-slate-100 h-full flex hover:bg-slate-200 group'>
-                        <h1 className='text-2xl font-semibold m-10 group-hover:underline underline-offset-4'>
-                            Blog<FaExternalLinkAlt className='inline text-sm ml-2'/>
-                        </h1>
-                    </div></Link>
                     <Link to='/projects'><div className='bg-slate-100 h-full flex hover:bg-slate-200 group'>
                         <h1 className='text-2xl font-semibold m-10 group-hover:underline underline-offset-4'>
                             Projects<FaExternalLinkAlt className='inline text-sm ml-2'/>
                         </h1>
                     </div></Link>
+                    <Link to='/blog'><div className='bg-slate-100 h-full flex hover:bg-slate-200 group'>
+                        <h1 className='text-2xl font-semibold m-10 group-hover:underline underline-offset-4'>
+                            Blog<FaExternalLinkAlt className='inline text-sm ml-2'/>
+                        </h1>
+                    </div></Link>
+
                 </div>
             
 
