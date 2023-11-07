@@ -17,6 +17,10 @@
       </script>
   </head>
   <body>
+    <script>
+      const selectedTheme = localStorage.getItem('selected-theme')
+      document.body.classList[selectedTheme === 'dark' ? 'add' : 'remove'](darkTheme)
+         </script>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
