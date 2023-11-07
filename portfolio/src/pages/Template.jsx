@@ -1,16 +1,21 @@
 import { IoIosArrowBack } from 'react-icons/io';
 import {FaExternalLinkAlt} from 'react-icons/fa'
 import { Link } from 'react-router-dom'
-import ThemeSwitcher from '../components/darkModeSwitch'
+import React from 'react';
+import { DarkThemeToggle, Flowbite } from 'flowbite-react';
 
 
 function Template({backarrow, header, subheader, subheader2, icons, contentlist, extracontent}) {
+
+    
     return (
+        <Flowbite>
         <div className=''>
             <div className='dark:bg-slate-800'>
                 <div className="min-h-screen dark:bg-slate-800 dark:text-white max-w-screen-md md:max-w-screen-lg p-10 mx-auto ">
                     <div className='absolute top-0 right-0 m-5' >
-                        <ThemeSwitcher/>
+                        <DarkThemeToggle />
+
                     </div>
                     <div className="text-left mt-6 md:mt-14 mb-4 md:flex justify-between">
                         <div className="">
@@ -40,6 +45,7 @@ function Template({backarrow, header, subheader, subheader2, icons, contentlist,
                 </div>
             </div>
         </div>
+        </Flowbite>
     );
     
 }
