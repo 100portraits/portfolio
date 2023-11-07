@@ -62,8 +62,8 @@ function Template({breadcrumb, header, subheader, subheader2, contentlist, extra
                             
 
                             <h1 className="pb-1 text-5xl md:text-6xl font-semibold">{header}</h1>
-                            <h1 className="text-lg md:text-2xl ">{subheader}</h1>
-                            <h1 className="text-md md:text-xl mt-2 mb-2">{subheader2}</h1>
+                            <h1 className="text-lg md:text-2xl">{subheader}</h1>
+                            <h1 className="text-md md:text-xl mt-2 mb-2 mr-8">{subheader2}</h1>
                         </div>
                         <div className='flex my-3 md:self-center flex-row gap-2 text-2xl md:text-4xl'>
                           <FaGithub/>

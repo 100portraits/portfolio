@@ -22,13 +22,14 @@ const Home = () => {
                     link: '/work'
                 },
                 {
-                    title: 'About me',
-                    link: '/about'
-                },
-                {
                     title: 'Projects',
                     link: '/projects'
                 },
+                {
+                    title: 'About me (open to work!)',
+                    link: '/about'
+                },
+                
                 {
                     title: 'Blog',
                     link: '/blog'
