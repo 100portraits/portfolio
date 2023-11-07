@@ -20,12 +20,7 @@ const Blog = () => {
             header='Blog'
             subheader=''
             subheader2="How I made some things."
-            icons={
-                <>
-                    <FaGithub/>
-                    <FaInstagram/>
-                </>
-            }
+            
             contentlist={[
                 {
                     title: 'Unpacking Clusters from BERTopic models',

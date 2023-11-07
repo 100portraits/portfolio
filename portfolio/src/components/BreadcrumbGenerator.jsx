@@ -14,8 +14,8 @@ const BreadcrumbGenerator = (links) => {
         <div>
             <Breadcrumb className="mb-2">
             {arr.map((item) => (
-                    <Breadcrumb.Item className="text-2xl text-slate-500 hover:text-slate-950 dark:text-slate-300 dark:hover:text-white">
-                        <Link className="text-lg" to={item.link}>{item.title}</Link>
+                    <Breadcrumb.Item className="text-2xl text-slate-500  dark:text-slate-300 ">
+                        <Link className="text-lg hover:text-slate-950 dark:hover:text-white hover:underline underline-offset-[6px]" to={item.link}>{item.title}</Link>
                     </Breadcrumb.Item>
             ))}
             </Breadcrumb>

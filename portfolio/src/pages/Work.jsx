@@ -20,12 +20,7 @@ const Work = () => {
             header='My Work'
             subheader=''
             subheader2="Here's how I've kept busy since moving to Amsterdam in 2022."
-            icons={
-                <>
-                    <FaGithub/>
-                    <FaInstagram/>
-                </>
-            }
+            
             contentlist={[
                 {
                     title: 'Research Assistant',

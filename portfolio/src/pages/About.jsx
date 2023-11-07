@@ -19,12 +19,7 @@ const About = () => {
                 }
                 header='About me'
 
-                icons={
-                    <>
-                        <FaGithub/>
-                        <FaInstagram/>
-                    </>
-                }
+                
                 contentlist={[
                     
                 ]}

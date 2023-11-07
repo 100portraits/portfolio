@@ -15,12 +15,7 @@ const Home = () => {
             header='Sahir Dhanani Enarth'
             subheader='Photography / data science / design'
             subheader2='Computational Social Science @ University of Amsterdam'
-            icons={
-                <>
-                    <FaGithub/>
-                    <FaInstagram/>
-                </>
-            }
+            
             contentlist={[
                 {
                     title: 'My work',

@@ -24,12 +24,7 @@ const Projects = () => {
             header='Projects'
             subheader=''
             subheader2="Some of my passion projects from the last few years."
-            icons={
-                <>
-                    <FaGithub/>
-                    <FaInstagram/>
-                </>
-            }
+
             contentlist={[
                 {
                     title: '100portraits',
