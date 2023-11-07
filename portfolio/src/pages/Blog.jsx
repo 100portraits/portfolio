@@ -5,9 +5,9 @@ const Blog = () => {
     return (
         <Template
             backarrow={true}
-            header='Projects'
+            header='Blog'
             subheader=''
-            subheader2="The making of things that I made! Hopefully helpful."
+            subheader2="How I made some things."
             icons={
                 <>
                     <FaGithub/>

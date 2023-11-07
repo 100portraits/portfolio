@@ -51,7 +51,7 @@ function Template({backarrow, header, subheader, subheader2, icons, contentlist,
             <div className='dark:bg-slate-800'>
                 <div className="min-h-screen dark:bg-slate-800 dark:text-white max-w-screen-md md:max-w-screen-lg p-10 mx-auto ">
                     <div className='absolute top-0 right-0 m-5' >
-                        <DarkThemeToggle />
+                        <DarkThemeToggle className='text-2xl'/>
 
                     </div>
                     <div className="text-left mt-6 md:mt-14 mb-4 md:flex justify-between">
