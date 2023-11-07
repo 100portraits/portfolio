@@ -1,11 +1,10 @@
-import {FaInstagram} from 'react-icons/fa/'
-import {FaGithub} from 'react-icons/fa/'
+import { IoIosArrowBack } from 'react-icons/io';
 import {FaExternalLinkAlt} from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import ThemeSwitcher from '../components/darkModeSwitch'
 
 
-function Template({header, subheader, subheader2, icons, contentlist, extracontent}) {
+function Template({backarrow, header, subheader, subheader2, icons, contentlist, extracontent}) {
     return (
         <div className=''>
             <div className='dark:bg-slate-800'>
@@ -15,6 +14,9 @@ function Template({header, subheader, subheader2, icons, contentlist, extraconte
                     </div>
                     <div className="text-left mt-6 md:mt-14 mb-4 md:flex justify-between">
                         <div className="">
+                            {/*show backarrow if True */}
+                            {backarrow && <Link to='/'><div className='mb-4 '><IoIosArrowBack className='inline-block'/><h1 className='underline inline-block'>Back</h1></div></Link>}
+
                             <h1 className="pb-1 text-5xl md:text-6xl font-semibold">{header}</h1>
                             <h1 className="text-lg md:text-2xl ">{subheader}</h1>
                             <h1 className="text-md md:text-xl">{subheader2}</h1>

@@ -1,10 +1,11 @@
-import { FaAddressBook, FaAmazon, FaGit, FaGithub, FaInstagram } from "react-icons/fa";
+import { FaGithub, FaInstagram } from "react-icons/fa";
 import Template from "./Template";
 
 const About = () => {
     return (
         <div>
             <Template
+                backarrow={true}
                 header='Test header'
                 subheader='test subheader'
                 subheader2='subheader2 test'
