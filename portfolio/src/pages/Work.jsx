@@ -5,7 +5,18 @@ import Template from './Template';
 const Work = () => {
     return (
         <Template
-            backarrow={true}
+            breadcrumb={
+                [
+                    {
+                        title: 'Home',
+                        link: '/'
+                    },
+                    {
+                        title: 'Work',
+                        link: '/work'
+                    }
+                ]
+            }
             header='My Work'
             subheader=''
             subheader2="Here's how I've kept busy since moving to Amsterdam in 2022."

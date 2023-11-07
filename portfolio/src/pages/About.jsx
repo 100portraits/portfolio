@@ -1,11 +1,22 @@
 import { FaGithub, FaInstagram } from "react-icons/fa";
 import Template from "./Template";
-
+import BreadcrumbGenerator from "../components/BreadcrumbGenerator";
 const About = () => {
     return (
         <div>
             <Template
-                backarrow={true}
+                breadcrumb={
+                        [
+                            {
+                                title: 'Home',
+                                link: '/'
+                            },
+                            {
+                                title: 'About me',
+                                link: '/about'
+                            }
+                        ]
+                }
                 header='About me'
 
                 icons={

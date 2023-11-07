@@ -8,7 +8,10 @@ import Template from './Template'
 const Home = () => {
     return (
         <Template
-            backarrow={false}
+            breadcrumb={
+                [
+                ]
+            }
             header='Sahir Dhanani Enarth'
             subheader='Photography / data science / design'
             subheader2='Computational Social Science @ University of Amsterdam'
