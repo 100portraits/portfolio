@@ -1,5 +1,5 @@
 import Template from "../Template"
-
+import { FaExternalLinkAlt } from "react-icons/fa";
 const Photography = () => {
     return (
         <Template
@@ -27,14 +27,13 @@ const Photography = () => {
                 
             ]}
             extracontent={<>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-                    <img src="https://placehold.co/400x500/AAA/31343C" className="w-full"/>
-                    <img src="https://placehold.co/400x500/AAA/31343C" className="w-full"/>
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
                     <img src="https://placehold.co/400x500/AAA/31343C" className="w-full"/>
                     <img src="https://placehold.co/400x500/AAA/31343C" className="w-full"/>
                     <img src="https://placehold.co/400x500/AAA/31343C" className="w-full"/>
                     <img src="https://placehold.co/400x500/AAA/31343C" className="w-full"/>
                 </div>
+                <h1 className="my-4 text-xl">Also, read about 100portraits, my passion project from the last couple years.  <FaExternalLinkAlt className="inline-block"/></h1>
             </>}
         />
     );
