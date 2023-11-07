@@ -24,6 +24,10 @@ const Home = () => {
                     link: '/work'
                 },
                 {
+                    title: 'About me',
+                    link: '/about'
+                },
+                {
                     title: 'Projects',
                     link: '/projects'
                 },
@@ -31,10 +35,7 @@ const Home = () => {
                     title: 'Blog',
                     link: '/blog'
                 },
-                {
-                    title: 'About me',
-                    link: '/about'
-                }
+                
             ]}
             
         />
