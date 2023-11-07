@@ -6,9 +6,8 @@ const About = () => {
         <div>
             <Template
                 backarrow={true}
-                header='Test header'
-                subheader='test subheader'
-                subheader2='subheader2 test'
+                header='About me'
+
                 icons={
                     <>
                         <FaGithub/>
@@ -16,23 +15,12 @@ const About = () => {
                     </>
                 }
                 contentlist={[
-                    {
-                        title: 'content title1',
-                        link: '/work'
-                    },
-                    {
-                        title: 'content title2',
-                        link: '/projects'
-                    },
-                    {
-                        title: 'content title3',
-                        link: '/blog'
-                    }
+                    
                 ]}
                 extracontent={
                     <>   
-                        <h1 className="text-2xl mt-4">extra content header</h1>
-                        <p className="">extra content paragraph</p>
+                        <h1 className="text-2xl mt-4">My interests</h1>
+                        <p className="">These are some of my interests</p>
                     </>
 
                 }

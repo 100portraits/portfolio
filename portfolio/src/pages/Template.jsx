@@ -68,16 +68,20 @@ function Template({backarrow, header, subheader, subheader2, icons, contentlist,
                         </div>
                     </div>
 
-                    <div className='grid grid-cols-1 md:grid-cols-2 gap-3 min-h-[40vh]'>
-                        {contentlist.map((content) => (
-                            <Link to={content.link}><div className='bg-slate-100 dark:bg-slate-700  h-full flex hover:bg-slate-200 group'>
-                                <h1 className='text-2xl font-semibold m-10 group-hover:underline underline-offset-4'>
-                                    {content.title}<FaExternalLinkAlt className='inline text-sm ml-2'/>
-                                </h1>
-                            </div></Link>
-                        ))
-                        }
-                    </div>
+                    {contentlist.length === 0 ? 
+                        <></> 
+                        : 
+                        <div className='grid grid-cols-1 md:grid-cols-2 gap-3 min-h-[40vh]'>
+                            {contentlist.map((content) => (
+                                <Link to={content.link}><div className='bg-slate-100 dark:bg-slate-700  h-full flex hover:bg-slate-200 group'>
+                                    <h1 className='text-2xl font-semibold m-10 group-hover:underline underline-offset-4'>
+                                        {content.title}<FaExternalLinkAlt className='inline text-sm ml-2'/>
+                                    </h1>
+                                </div></Link>
+                            ))
+                            }
+                        </div>
+                    }   
                     {extracontent}
                 </div>
             </div>
