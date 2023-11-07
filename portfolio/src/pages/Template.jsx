@@ -3,10 +3,47 @@ import {FaExternalLinkAlt} from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import React from 'react';
 import { DarkThemeToggle, Flowbite } from 'flowbite-react';
-
+import { useEffect } from 'react';
 
 function Template({backarrow, header, subheader, subheader2, icons, contentlist, extracontent}) {
-
+    useEffect(() => {
+        const theme = localStorage.getItem('theme');
+        
+        if (theme === 'dark') {
+          document.querySelector('html').classList.add('dark');
+          // Create a click event
+          const clickEvent = new MouseEvent('click', { bubbles: true, cancelable: true, view: window });
+    
+          const buttonElement = document.querySelector('button[aria-label*="Toggle dark mode"]');
+          buttonElement.dispatchEvent(clickEvent);
+        } else {
+          document.querySelector('html').classList.remove('dark');
+        }
+    
+        // Function to be executed when you change the "dark" class in the HTML tag
+        const handleDarkModeChange = (mutationsList, observer) => {
+          for (const mutation of mutationsList) {
+            if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+              const htmlElement = document.querySelector('html');
+              if (htmlElement.classList.contains('dark')) {
+                // The "dark" class has been added
+                localStorage.setItem('theme', 'dark');
+              } else {
+                // The "dark" class has been removed
+                localStorage.setItem('theme', 'light');
+              }
+            }
+          }
+        };
+    
+        // Create a new MutationObserver
+        const htmlElement = document.querySelector('html');
+        const observer = new MutationObserver(handleDarkModeChange);
+        
+        // Notice changes in the "dark" class of the HTML tag
+        observer.observe(htmlElement, { attributes: true, attributeFilter: ['class'] });
+    
+      }, []);
     
     return (
         <Flowbite>
