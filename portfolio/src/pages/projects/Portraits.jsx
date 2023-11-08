@@ -1,6 +1,6 @@
 import Template from "../Template"
 import { FaExternalLinkAlt } from "react-icons/fa";
-
+import { Link } from "react-router-dom";
 import img1 from '../../images/fun/min/img-1.jpg'
 import img2 from '../../images/fun/min/img-2.jpg'
 import img3 from '../../images/fun/min/img-3.jpg'
@@ -65,9 +65,17 @@ const Portraits = () => {
                     </div>
                 </div>
                 
-                <h1 className="mt-6 text-2xl font-semibold">Check out the project's website   <FaExternalLinkAlt className="inline-block"/></h1>
-                <h1 className="mt-2 text-lg">And here is a blog article about the development of the website   <FaExternalLinkAlt className="inline-block"/></h1>
+                <Link to={'https://100portraits.github.io/100portraits-amsterdam/'} target="_blank">
+                    <h1 className="mt-6 text-2xl font-semibold hover:underline underline-offset-[6px]">Check out the Amsterdam edition of the project (in progress)   <FaExternalLinkAlt className="inline-block"/></h1>
+                </Link>
                 
+                <Link to={'https://100portraits.github.io/100portraits-vancouver/'} target="_blank">
+                    <h1 className="mt-2 text-2xl font-semibold hover:underline underline-offset-[6px]">See the finished Vancouver edition   <FaExternalLinkAlt className="inline-block"/></h1>
+                </Link>
+                
+                <Link to={'../blog/making-of-100portraits'}>
+                    <h1 className="mt-6 text-lg hover:underline underline-offset-[6px]">And here is a blog article about the development of the website   <FaExternalLinkAlt className="inline-block"/></h1>
+                </Link>
             </>}
 
 
