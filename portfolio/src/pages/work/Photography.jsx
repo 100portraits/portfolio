@@ -33,7 +33,7 @@ const Photography = () => {
                     <img src="https://placehold.co/400x500/AAA/31343C" className="w-full"/>
                     <img src="https://placehold.co/400x500/AAA/31343C" className="w-full"/>
                 </div>
-                <h1 className="my-4 text-xl">Also, read about 100portraits, my passion project from the last couple years.  <FaExternalLinkAlt className="inline-block"/></h1>
+                <h1 className="my-4 text-xl">Also, check out 100portraits, my passion project from the last couple of years!   <FaExternalLinkAlt className="inline-block"/></h1>
             </>}
         />
     );

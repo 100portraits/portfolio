@@ -18,15 +18,15 @@ const About = () => {
                         ]
                 }
                 header='About me'
-
+                subheader=''
+                subheader2='My name is Sahir Dhanani Enarth. I am passionate about photography, data, and design. Here is why you should hire me:'
                 
                 contentlist={[
                     
                 ]}
                 extracontent={
                     <>   
-                        <h1 className="text-2xl mt-4">My interests</h1>
-                        <p className="">These are some of my interests</p>
+                        <h1 className="text-2xl mt-4">Coming soon</h1>
                     </>
 
                 }

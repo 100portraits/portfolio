@@ -34,11 +34,11 @@ const Research = () => {
                         <h1 className="text-xl font-semibold">Python Webscraping</h1>
                         <p className="text-sm">I used Python and the BeautifulSoup4 library to scrape data from the Internet Movie Database (IMDb), and learned some of the key steps in setting up data-retrieval.</p>
                     </div>
-                    <div className="bg-gray-100 dark:bg-slate-900 p-3 rounded-md">
+                    <div className="bg-gray-100 dark:bg-slate-900 p-5 rounded-md">
                         <h1 className="text-xl font-semibold">Topic Modelling</h1>
                         <p className="text-sm">Familiarised myself with the concepts behind topic modelling with BERT, and ran analysis on keywords scraped from IMDb.</p>
                     </div>
-                    <div className="bg-gray-100 dark:bg-slate-900 p-3 rounded-md">
+                    <div className="bg-gray-100 dark:bg-slate-900 p-5 rounded-md">
                         <h1 className="text-xl font-semibold">Data Analysis</h1>
                         <p className="text-sm">Manipulating the scraped data as well as the cluster data, I learned how to work with time series data in detail, and create specific matrices for statistical/machine learning analysis.</p>
                     </div>

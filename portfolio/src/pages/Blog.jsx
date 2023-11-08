@@ -19,20 +19,21 @@ const Blog = () => {
     }
             header='Blog'
             subheader=''
-            subheader2="How I made some things."
+            subheader2="How I made/did some things. Enjoy reading!"
             
             contentlist={[
                 {
                     title: 'Unpacking Clusters from BERTopic models',
-                    link: '/'
+                    link: '/blog/unpacking-clusters'
                 },
+
                 {
-                    title: 'Making this website',
-                    link: '/'
+                    title: 'Making the portfolio',
+                    link: '/blog/making-of-portfolio'
                 },
                 {
                     title: 'Making 100portraits',
-                    link: '/'
+                    link: '/blog/making-of-100portraits'
                 },
             
                 

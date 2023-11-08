@@ -15,6 +15,11 @@ import Photography from './pages/work/Photography'
 import Portraits from './pages/projects/Portraits'
 import Toolkit from './pages/projects/Toolkit'
 
+//blog
+import UnpackingClusters from './pages/blog/UnpackingClusters'
+import Making100portraits from './pages/blog/Making100portraits'
+import MakingPortfolio from './pages/blog/MakingPortfolio'
+
 function App() {
   
 
@@ -33,6 +38,12 @@ function App() {
 
       <Route path="/projects/portraits" element={<Portraits />} />
       <Route path="/projects/toolkit" element={<Toolkit />} />
+
+      <Route path="/blog/making-of-100portraits" element={<Making100portraits />} />
+      <Route path="/blog/making-of-portfolio" element={<MakingPortfolio />} />
+      <Route path="/blog/unpacking-clusters" element={<UnpackingClusters />} />
+
+
 
     </Routes>
   )

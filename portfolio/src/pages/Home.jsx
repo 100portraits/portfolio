@@ -26,7 +26,7 @@ const Home = () => {
                     link: '/projects'
                 },
                 {
-                    title: 'About me (open to work!)',
+                    title: 'About me / skills',
                     link: '/about'
                 },
                 
