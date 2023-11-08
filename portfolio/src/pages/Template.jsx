@@ -66,9 +66,9 @@ function Template({breadcrumb, header, subheader, subheader2, contentlist, extra
                             <h1 className="text-md md:text-xl mt-2 mb-2 mr-8">{subheader2}</h1>
                         </div>
                         <div className='flex my-3 md:self-center flex-row gap-2 text-2xl md:text-4xl'>
-                          <FaGithub/>
-                          <FaInstagram/>
-                          <FaLinkedin/>
+                          <Link to='https://www.github.com/100portraits'><FaGithub /></Link>
+                          <Link to='https://www.instagram.com/sahir.de'><FaInstagram/></Link>
+                          <Link to='https://www.linkedin.com/in/sahirde/'><FaLinkedin/></Link>
                         </div>
                     </div>
 
