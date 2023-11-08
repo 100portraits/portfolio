@@ -1,20 +1,20 @@
 import Template from "../Template"
 import { FaExternalLinkAlt } from "react-icons/fa";
 
-import img1 from '../../images/fun/img-1.jpg'
-import img2 from '../../images/fun/img-2.jpg'
-import img3 from '../../images/fun/img-3.jpg'
-import img4 from '../../images/fun/img-4.jpg'
-import img5 from '../../images/fun/img-5.jpg'
-import img6 from '../../images/fun/img-6.jpg'
-import img7 from '../../images/fun/img-7.jpg'
-import img8 from '../../images/fun/img-8.jpg'
-import img9 from '../../images/fun/img-9.jpg'
-import img10 from '../../images/fun/img-10.jpg'
-import img11 from '../../images/fun/img-11.jpg'
-import img12 from '../../images/fun/img-12.jpg'
-import img13 from '../../images/fun/img-13.jpg'
-import img14 from '../../images/fun/img-14.jpg'
+import img1 from '../../images/fun/min/img-1.jpg'
+import img2 from '../../images/fun/min/img-2.jpg'
+import img3 from '../../images/fun/min/img-3.jpg'
+import img4 from '../../images/fun/min/img-4.jpg'
+import img5 from '../../images/fun/min/img-5.jpg'
+import img6 from '../../images/fun/min/img-6.jpg'
+import img7 from '../../images/fun/min/img-7.jpg'
+import img8 from '../../images/fun/min/img-8.jpg'
+import img9 from '../../images/fun/min/img-9.jpg'
+import img10 from '../../images/fun/min/img-10.jpg'
+import img11 from '../../images/fun/min/img-11.jpg'
+import img12 from '../../images/fun/min/img-12.jpg'
+import img13 from '../../images/fun/min/img-13.jpg'
+import img14 from '../../images/fun/min/img-14.jpg'
 
 
 const Portraits = () => {

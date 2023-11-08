@@ -1,9 +1,9 @@
 import Template from "../Template"
 import { FaExternalLinkAlt } from "react-icons/fa";
-import school1 from '../../images/school/img-1.jpg'
-import school2 from '../../images/school/img-2.jpg'
-import school3 from '../../images/school/img-3.jpg'
-import school4 from '../../images/school/img-4.jpg'
+import school1 from '../../images/school/min/img-1.jpg'
+import school2 from '../../images/school/min/img-2.jpg'
+import school3 from '../../images/school/min/img-3.jpg'
+import school4 from '../../images/school/min/img-4.jpg'
 
 
 const Photography = () => {
