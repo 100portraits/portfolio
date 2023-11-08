@@ -1,5 +1,9 @@
 import { FaExternalLinkAlt } from "react-icons/fa";
 import Template from "../Template"
+import { Link } from "react-router-dom";
+import home from '../../images/cybertalk/home.png'
+import page1 from '../../images/cybertalk/page1.png'
+import page2 from '../../images/cybertalk/page2.png'
 
 const Toolkit = () => {
     return (
@@ -30,8 +34,13 @@ const Toolkit = () => {
                 
             ]}
             extracontent={<>
-                <img src="https://placehold.co/2000x1000/AAA/31343C" className="w-full"/>
-                <h1 className="mt-6 text-xl">Browse the toolkit here <FaExternalLinkAlt className="inline-block"/></h1>
+                <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 gap-3">
+                    <img src={home} className=""/>
+                    <img src={page1} className="w-full"/>
+                    <img src={page2} className="w-full"/>
+                                    
+                </div>
+                <Link target="_blank" to={'https://sahirde.eu.pythonanywhere.com'}><h1 className="mt-6 text-xl hover:underline underline-offset-[6px]">Browse the toolkit here <FaExternalLinkAlt className="inline-block"/></h1></Link>
             </>}
         
         />

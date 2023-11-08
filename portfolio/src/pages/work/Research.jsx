@@ -1,5 +1,6 @@
 import { FaExternalLinkAlt } from "react-icons/fa";
 import Template from "../Template"
+import { Link } from "react-router-dom";
 
 const Research = () => {
     return (
@@ -44,7 +45,7 @@ const Research = () => {
                     </div>
 
                 </div>
-                <h1 className="my-4 text-xl">Read an article from my blog about unpacking clusters from BERTopic models.  <FaExternalLinkAlt className="inline-block"/></h1>
+                <Link to={'../blog/unpacking-clusters'}><h1 className="my-4 text-xl hover:underline underline-offset-[6px]">Read an article from my blog about unpacking clusters from BERTopic models.  <FaExternalLinkAlt className="inline-block"/></h1></Link>
             </>}
         />
     );
