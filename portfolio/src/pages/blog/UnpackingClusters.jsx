@@ -1,5 +1,5 @@
 import Template from "../Template"
-
+import {CodeBlock} from 'react-code-blocks'
 const UnpackingClusters = () => {
     return (
         <Template 
@@ -27,7 +27,7 @@ const UnpackingClusters = () => {
                 
             ]}
             extracontent={<>
-                <h1 className="mt-6 text-xl">Coming soon</h1>
+                <CodeBlock text="import pandas as pd" language="python"/>
             </>}
         />
     );

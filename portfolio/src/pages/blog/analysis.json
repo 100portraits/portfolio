@@ -1,0 +1,5205 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>Unnamed: 0</th>\n",
+       "      <th>title</th>\n",
+       "      <th>url</th>\n",
+       "      <th>date</th>\n",
+       "      <th>tag</th>\n",
+       "      <th>collections</th>\n",
+       "      <th>text</th>\n",
+       "      <th>subheadings</th>\n",
+       "      <th>image_urls</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>0</td>\n",
+       "      <td>Supermanpak en bar uit Cheers geveild, net als...</td>\n",
+       "      <td>https://nos.nl/artikel/2473536-supermanpak-en-...</td>\n",
+       "      <td>2023-05-01</td>\n",
+       "      <td>NaN</td>\n",
+       "      <td>['Cultuur &amp; Media']</td>\n",
+       "      <td>Altijd al rond willen lopen in een authentiek ...</td>\n",
+       "      <td>['Jarenlange verzameling']</td>\n",
+       "      <td>['https://cdn.nos.nl/image/2023/05/01/965551/1...</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>1</td>\n",
+       "      <td>Oekraïense topadviseur vastberaden: 'We gaan ó...</td>\n",
+       "      <td>https://nos.nl/artikel/2473529-oekraiense-topa...</td>\n",
+       "      <td>2023-05-01</td>\n",
+       "      <td>NaN</td>\n",
+       "      <td>['Buitenland']</td>\n",
+       "      <td>De voorbereidingen voor het Oekraïense tegenof...</td>\n",
+       "      <td>[\"F16's en langeafstandsraketten\", 'Munitiedep...</td>\n",
+       "      <td>['https://cdn.nos.nl/image/2023/05/01/965533/1...</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>2</td>\n",
+       "      <td>Politie haalt man die op bouwkraan klom veilig...</td>\n",
+       "      <td>https://nos.nl/artikel/2473528-politie-haalt-m...</td>\n",
+       "      <td>2023-05-01</td>\n",
+       "      <td>NaN</td>\n",
+       "      <td>['In samenwerking met', 'RTV Noord', 'Regionaa...</td>\n",
+       "      <td>Een man die vanavond boven op een bouwkraan bi...</td>\n",
+       "      <td>NaN</td>\n",
+       "      <td>['https://cdn.nos.nl/image/2023/05/01/965532/1...</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>3</th>\n",
+       "      <td>3</td>\n",
+       "      <td>Taxichauffeur tegen wie jarenlange celstraf wa...</td>\n",
+       "      <td>https://nos.nl/artikel/2473527-taxichauffeur-t...</td>\n",
+       "      <td>2023-05-01</td>\n",
+       "      <td>NaN</td>\n",
+       "      <td>['In samenwerking met', 'RTV Utrecht', 'Region...</td>\n",
+       "      <td>De Amsterdamse taxichauffeur die verdacht werd...</td>\n",
+       "      <td>['Reeks explosies']</td>\n",
+       "      <td>['https://cdn.nos.nl/image/2023/05/01/965529/1...</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>4</th>\n",
+       "      <td>4</td>\n",
+       "      <td>In Rotterdam maakt vuurwapengeweld plaats voor...</td>\n",
+       "      <td>https://nos.nl/artikel/2473526-in-rotterdam-ma...</td>\n",
+       "      <td>2023-05-01</td>\n",
+       "      <td>NaN</td>\n",
+       "      <td>['Binnenland']</td>\n",
+       "      <td>Criminelen kiezen de laatste tijd vaker voor v...</td>\n",
+       "      <td>[\"Cobra's en benzine\", \"'Misschien wel 100 pro...</td>\n",
+       "      <td>['https://cdn.nos.nl/image/2023/05/01/965526/1...</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>...</th>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>5432</th>\n",
+       "      <td>5432</td>\n",
+       "      <td>Gaskraan eindelijk dicht, maar vlag gaat nog n...</td>\n",
+       "      <td>https://nos.nl/artikel/2492466-gaskraan-eindel...</td>\n",
+       "      <td>2023-10-01</td>\n",
+       "      <td>NaN</td>\n",
+       "      <td>['Binnenland']</td>\n",
+       "      <td>Eindelijk is het daar, het moment waar zo lang...</td>\n",
+       "      <td>['Kussengas']</td>\n",
+       "      <td>['https://cdn.nos.nl/image/2023/10/01/1012885/...</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>5433</th>\n",
+       "      <td>5433</td>\n",
+       "      <td>Dode gevonden bij felle woningbrand in Gouda</td>\n",
+       "      <td>https://nos.nl/artikel/2492458-dode-gevonden-b...</td>\n",
+       "      <td>2023-10-01</td>\n",
+       "      <td>NaN</td>\n",
+       "      <td>['Binnenland']</td>\n",
+       "      <td>Bij het blussen van een woningbrand in Gouda i...</td>\n",
+       "      <td>NaN</td>\n",
+       "      <td>['https://cdn.nos.nl/image/2023/10/01/1012874/...</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>5434</th>\n",
+       "      <td>5434</td>\n",
+       "      <td>Oorlog Oekraïne in september: Polen levert gee...</td>\n",
+       "      <td>https://nos.nl/artikel/2492453-oorlog-oekraine...</td>\n",
+       "      <td>2023-10-01</td>\n",
+       "      <td>NaN</td>\n",
+       "      <td>['Buitenland']</td>\n",
+       "      <td>Sinds Rusland op 24 februari 2022 Oekraïne bin...</td>\n",
+       "      <td>['De belangrijkste ontwikkelingen van septembe...</td>\n",
+       "      <td>['https://cdn.nos.nl/image/2023/10/01/1012862/...</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>5435</th>\n",
+       "      <td>5435</td>\n",
+       "      <td>Wekdienst 1/10: Gaswinning Groningen stopt na ...</td>\n",
+       "      <td>https://nos.nl/artikel/2492452-wekdienst-1-10-...</td>\n",
+       "      <td>2023-10-01</td>\n",
+       "      <td>NaN</td>\n",
+       "      <td>['Binnenland', 'Buitenland']</td>\n",
+       "      <td>Goedemorgen! In Groningen stopt na zestig jaar...</td>\n",
+       "      <td>['Wat kun je vandaag verwachten?', 'Wat heb je...</td>\n",
+       "      <td>['https://cdn.nos.nl/image/2023/10/01/1012860/...</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>5436</th>\n",
+       "      <td>5436</td>\n",
+       "      <td>Grote brand in schuur op Texel, ook brandweer ...</td>\n",
+       "      <td>https://nos.nl/artikel/2492445-grote-brand-in-...</td>\n",
+       "      <td>2023-10-01</td>\n",
+       "      <td>NaN</td>\n",
+       "      <td>['Binnenland']</td>\n",
+       "      <td>In een schuur in Oosterend op Texel heeft een ...</td>\n",
+       "      <td>NaN</td>\n",
+       "      <td>['https://cdn.nos.nl/image/2023/10/01/1012853/...</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "<p>5437 rows × 9 columns</p>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "      Unnamed: 0                                              title  \\\n",
+       "0              0  Supermanpak en bar uit Cheers geveild, net als...   \n",
+       "1              1  Oekraïense topadviseur vastberaden: 'We gaan ó...   \n",
+       "2              2  Politie haalt man die op bouwkraan klom veilig...   \n",
+       "3              3  Taxichauffeur tegen wie jarenlange celstraf wa...   \n",
+       "4              4  In Rotterdam maakt vuurwapengeweld plaats voor...   \n",
+       "...          ...                                                ...   \n",
+       "5432        5432  Gaskraan eindelijk dicht, maar vlag gaat nog n...   \n",
+       "5433        5433       Dode gevonden bij felle woningbrand in Gouda   \n",
+       "5434        5434  Oorlog Oekraïne in september: Polen levert gee...   \n",
+       "5435        5435  Wekdienst 1/10: Gaswinning Groningen stopt na ...   \n",
+       "5436        5436  Grote brand in schuur op Texel, ook brandweer ...   \n",
+       "\n",
+       "                                                    url        date  tag  \\\n",
+       "0     https://nos.nl/artikel/2473536-supermanpak-en-...  2023-05-01  NaN   \n",
+       "1     https://nos.nl/artikel/2473529-oekraiense-topa...  2023-05-01  NaN   \n",
+       "2     https://nos.nl/artikel/2473528-politie-haalt-m...  2023-05-01  NaN   \n",
+       "3     https://nos.nl/artikel/2473527-taxichauffeur-t...  2023-05-01  NaN   \n",
+       "4     https://nos.nl/artikel/2473526-in-rotterdam-ma...  2023-05-01  NaN   \n",
+       "...                                                 ...         ...  ...   \n",
+       "5432  https://nos.nl/artikel/2492466-gaskraan-eindel...  2023-10-01  NaN   \n",
+       "5433  https://nos.nl/artikel/2492458-dode-gevonden-b...  2023-10-01  NaN   \n",
+       "5434  https://nos.nl/artikel/2492453-oorlog-oekraine...  2023-10-01  NaN   \n",
+       "5435  https://nos.nl/artikel/2492452-wekdienst-1-10-...  2023-10-01  NaN   \n",
+       "5436  https://nos.nl/artikel/2492445-grote-brand-in-...  2023-10-01  NaN   \n",
+       "\n",
+       "                                            collections  \\\n",
+       "0                                   ['Cultuur & Media']   \n",
+       "1                                        ['Buitenland']   \n",
+       "2     ['In samenwerking met', 'RTV Noord', 'Regionaa...   \n",
+       "3     ['In samenwerking met', 'RTV Utrecht', 'Region...   \n",
+       "4                                        ['Binnenland']   \n",
+       "...                                                 ...   \n",
+       "5432                                     ['Binnenland']   \n",
+       "5433                                     ['Binnenland']   \n",
+       "5434                                     ['Buitenland']   \n",
+       "5435                       ['Binnenland', 'Buitenland']   \n",
+       "5436                                     ['Binnenland']   \n",
+       "\n",
+       "                                                   text  \\\n",
+       "0     Altijd al rond willen lopen in een authentiek ...   \n",
+       "1     De voorbereidingen voor het Oekraïense tegenof...   \n",
+       "2     Een man die vanavond boven op een bouwkraan bi...   \n",
+       "3     De Amsterdamse taxichauffeur die verdacht werd...   \n",
+       "4     Criminelen kiezen de laatste tijd vaker voor v...   \n",
+       "...                                                 ...   \n",
+       "5432  Eindelijk is het daar, het moment waar zo lang...   \n",
+       "5433  Bij het blussen van een woningbrand in Gouda i...   \n",
+       "5434  Sinds Rusland op 24 februari 2022 Oekraïne bin...   \n",
+       "5435  Goedemorgen! In Groningen stopt na zestig jaar...   \n",
+       "5436  In een schuur in Oosterend op Texel heeft een ...   \n",
+       "\n",
+       "                                            subheadings  \\\n",
+       "0                            ['Jarenlange verzameling']   \n",
+       "1     [\"F16's en langeafstandsraketten\", 'Munitiedep...   \n",
+       "2                                                   NaN   \n",
+       "3                                   ['Reeks explosies']   \n",
+       "4     [\"Cobra's en benzine\", \"'Misschien wel 100 pro...   \n",
+       "...                                                 ...   \n",
+       "5432                                      ['Kussengas']   \n",
+       "5433                                                NaN   \n",
+       "5434  ['De belangrijkste ontwikkelingen van septembe...   \n",
+       "5435  ['Wat kun je vandaag verwachten?', 'Wat heb je...   \n",
+       "5436                                                NaN   \n",
+       "\n",
+       "                                             image_urls  \n",
+       "0     ['https://cdn.nos.nl/image/2023/05/01/965551/1...  \n",
+       "1     ['https://cdn.nos.nl/image/2023/05/01/965533/1...  \n",
+       "2     ['https://cdn.nos.nl/image/2023/05/01/965532/1...  \n",
+       "3     ['https://cdn.nos.nl/image/2023/05/01/965529/1...  \n",
+       "4     ['https://cdn.nos.nl/image/2023/05/01/965526/1...  \n",
+       "...                                                 ...  \n",
+       "5432  ['https://cdn.nos.nl/image/2023/10/01/1012885/...  \n",
+       "5433  ['https://cdn.nos.nl/image/2023/10/01/1012874/...  \n",
+       "5434  ['https://cdn.nos.nl/image/2023/10/01/1012862/...  \n",
+       "5435  ['https://cdn.nos.nl/image/2023/10/01/1012860/...  \n",
+       "5436  ['https://cdn.nos.nl/image/2023/10/01/1012853/...  \n",
+       "\n",
+       "[5437 rows x 9 columns]"
+      ]
+     },
+     "execution_count": 2,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "import pandas as pd\n",
+    "\n",
+    "# Read in the data\n",
+    "df=pd.read_csv('../2023_nos_scraper.csv')\n",
+    "df"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 48,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "#remove the last line of text from every cell in the 'text' column\n",
+    "def remove_last_line(text):\n",
+    "    return text.rsplit('\\n', 1)[0]\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 49,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "#use .apply to apply the function to every cell in the 'text' column\n",
+    "df['text'] = df['text'].apply(remove_last_line)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 58,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "#define the doc_list for topic modeling\n",
+    "doc_list = df['text'].tolist()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 59,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "['aan',\n",
+       " 'aangaande',\n",
+       " 'aangezien',\n",
+       " 'achte',\n",
+       " 'achter',\n",
+       " 'achterna',\n",
+       " 'af',\n",
+       " 'afgelopen',\n",
+       " 'al',\n",
+       " 'aldaar',\n",
+       " 'aldus',\n",
+       " 'alhoewel',\n",
+       " 'alias',\n",
+       " 'alle',\n",
+       " 'allebei',\n",
+       " 'alleen',\n",
+       " 'alles',\n",
+       " 'als',\n",
+       " 'alsnog',\n",
+       " 'altijd',\n",
+       " 'altoos',\n",
+       " 'ander',\n",
+       " 'andere',\n",
+       " 'anders',\n",
+       " 'anderszins',\n",
+       " 'beetje',\n",
+       " 'behalve',\n",
+       " 'behoudens',\n",
+       " 'beide',\n",
+       " 'beiden',\n",
+       " 'ben',\n",
+       " 'beneden',\n",
+       " 'bent',\n",
+       " 'bepaald',\n",
+       " 'betreffende',\n",
+       " 'bij',\n",
+       " 'bijna',\n",
+       " 'bijv',\n",
+       " 'binnen',\n",
+       " 'binnenin',\n",
+       " 'blijkbaar',\n",
+       " 'blijken',\n",
+       " 'boven',\n",
+       " 'bovenal',\n",
+       " 'bovendien',\n",
+       " 'bovengenoemd',\n",
+       " 'bovenstaand',\n",
+       " 'bovenvermeld',\n",
+       " 'buiten',\n",
+       " 'bv',\n",
+       " 'daar',\n",
+       " 'daardoor',\n",
+       " 'daarheen',\n",
+       " 'daarin',\n",
+       " 'daarna',\n",
+       " 'daarnet',\n",
+       " 'daarom',\n",
+       " 'daarop',\n",
+       " 'daaruit',\n",
+       " 'daarvanlangs',\n",
+       " 'dan',\n",
+       " 'dat',\n",
+       " 'de',\n",
+       " 'deden',\n",
+       " 'deed',\n",
+       " 'der',\n",
+       " 'derde',\n",
+       " 'derhalve',\n",
+       " 'dertig',\n",
+       " 'deze',\n",
+       " 'dhr',\n",
+       " 'die',\n",
+       " 'dikwijls',\n",
+       " 'dit',\n",
+       " 'doch',\n",
+       " 'doe',\n",
+       " 'doen',\n",
+       " 'doet',\n",
+       " 'door',\n",
+       " 'doorgaand',\n",
+       " 'drie',\n",
+       " 'duizend',\n",
+       " 'dus',\n",
+       " 'echter',\n",
+       " 'een',\n",
+       " 'eens',\n",
+       " 'eer',\n",
+       " 'eerdat',\n",
+       " 'eerder',\n",
+       " 'eerlang',\n",
+       " 'eerst',\n",
+       " 'eerste',\n",
+       " 'eigen',\n",
+       " 'eigenlijk',\n",
+       " 'elk',\n",
+       " 'elke',\n",
+       " 'en',\n",
+       " 'enig',\n",
+       " 'enige',\n",
+       " 'enigszins',\n",
+       " 'enkel',\n",
+       " 'er',\n",
+       " 'erdoor',\n",
+       " 'erg',\n",
+       " 'ergens',\n",
+       " 'etc',\n",
+       " 'etcetera',\n",
+       " 'even',\n",
+       " 'eveneens',\n",
+       " 'evenwel',\n",
+       " 'gauw',\n",
+       " 'ge',\n",
+       " 'gedurende',\n",
+       " 'geen',\n",
+       " 'gehad',\n",
+       " 'gekund',\n",
+       " 'geleden',\n",
+       " 'gelijk',\n",
+       " 'gemoeten',\n",
+       " 'gemogen',\n",
+       " 'genoeg',\n",
+       " 'geweest',\n",
+       " 'gewoon',\n",
+       " 'gewoonweg',\n",
+       " 'haar',\n",
+       " 'haarzelf',\n",
+       " 'had',\n",
+       " 'hadden',\n",
+       " 'hare',\n",
+       " 'heb',\n",
+       " 'hebben',\n",
+       " 'hebt',\n",
+       " 'hedden',\n",
+       " 'heeft',\n",
+       " 'heel',\n",
+       " 'hem',\n",
+       " 'hemzelf',\n",
+       " 'hen',\n",
+       " 'het',\n",
+       " 'hetzelfde',\n",
+       " 'hier',\n",
+       " 'hierbeneden',\n",
+       " 'hierboven',\n",
+       " 'hierin',\n",
+       " 'hierna',\n",
+       " 'hierom',\n",
+       " 'hij',\n",
+       " 'hijzelf',\n",
+       " 'hoe',\n",
+       " 'hoewel',\n",
+       " 'honderd',\n",
+       " 'hun',\n",
+       " 'hunne',\n",
+       " 'ieder',\n",
+       " 'iedere',\n",
+       " 'iedereen',\n",
+       " 'iemand',\n",
+       " 'iets',\n",
+       " 'ik',\n",
+       " 'ikzelf',\n",
+       " 'in',\n",
+       " 'inderdaad',\n",
+       " 'inmiddels',\n",
+       " 'intussen',\n",
+       " 'inzake',\n",
+       " 'is',\n",
+       " 'ja',\n",
+       " 'je',\n",
+       " 'jezelf',\n",
+       " 'jij',\n",
+       " 'jijzelf',\n",
+       " 'jou',\n",
+       " 'jouw',\n",
+       " 'jouwe',\n",
+       " 'juist',\n",
+       " 'jullie',\n",
+       " 'kan',\n",
+       " 'klaar',\n",
+       " 'kon',\n",
+       " 'konden',\n",
+       " 'krachtens',\n",
+       " 'kun',\n",
+       " 'kunnen',\n",
+       " 'kunt',\n",
+       " 'laatst',\n",
+       " 'later',\n",
+       " 'liever',\n",
+       " 'lijken',\n",
+       " 'lijkt',\n",
+       " 'maak',\n",
+       " 'maakt',\n",
+       " 'maakte',\n",
+       " 'maakten',\n",
+       " 'maar',\n",
+       " 'mag',\n",
+       " 'maken',\n",
+       " 'me',\n",
+       " 'meer',\n",
+       " 'meest',\n",
+       " 'meestal',\n",
+       " 'men',\n",
+       " 'met',\n",
+       " 'mevr',\n",
+       " 'mezelf',\n",
+       " 'mij',\n",
+       " 'mijn',\n",
+       " 'mijnent',\n",
+       " 'mijner',\n",
+       " 'mijzelf',\n",
+       " 'minder',\n",
+       " 'miss',\n",
+       " 'misschien',\n",
+       " 'missen',\n",
+       " 'mits',\n",
+       " 'mocht',\n",
+       " 'mochten',\n",
+       " 'moest',\n",
+       " 'moesten',\n",
+       " 'moet',\n",
+       " 'moeten',\n",
+       " 'mogen',\n",
+       " 'mr',\n",
+       " 'mrs',\n",
+       " 'mw',\n",
+       " 'na',\n",
+       " 'naar',\n",
+       " 'nadat',\n",
+       " 'nam',\n",
+       " 'namelijk',\n",
+       " 'nee',\n",
+       " 'neem',\n",
+       " 'negen',\n",
+       " 'nemen',\n",
+       " 'nergens',\n",
+       " 'net',\n",
+       " 'niemand',\n",
+       " 'niet',\n",
+       " 'niets',\n",
+       " 'niks',\n",
+       " 'noch',\n",
+       " 'nochtans',\n",
+       " 'nog',\n",
+       " 'nogal',\n",
+       " 'nooit',\n",
+       " 'nu',\n",
+       " 'nv',\n",
+       " 'of',\n",
+       " 'ofschoon',\n",
+       " 'om',\n",
+       " 'omdat',\n",
+       " 'omhoog',\n",
+       " 'omlaag',\n",
+       " 'omstreeks',\n",
+       " 'omtrent',\n",
+       " 'omver',\n",
+       " 'ondanks',\n",
+       " 'onder',\n",
+       " 'ondertussen',\n",
+       " 'ongeveer',\n",
+       " 'ons',\n",
+       " 'onszelf',\n",
+       " 'onze',\n",
+       " 'onzeker',\n",
+       " 'ooit',\n",
+       " 'ook',\n",
+       " 'op',\n",
+       " 'opnieuw',\n",
+       " 'opzij',\n",
+       " 'over',\n",
+       " 'overal',\n",
+       " 'overeind',\n",
+       " 'overige',\n",
+       " 'overigens',\n",
+       " 'paar',\n",
+       " 'pas',\n",
+       " 'per',\n",
+       " 'precies',\n",
+       " 'recent',\n",
+       " 'redelijk',\n",
+       " 'reeds',\n",
+       " 'rond',\n",
+       " 'rondom',\n",
+       " 'samen',\n",
+       " 'sedert',\n",
+       " 'sinds',\n",
+       " 'sindsdien',\n",
+       " 'slechts',\n",
+       " 'sommige',\n",
+       " 'spoedig',\n",
+       " 'steeds',\n",
+       " 'tamelijk',\n",
+       " 'te',\n",
+       " 'tegen',\n",
+       " 'tegenover',\n",
+       " 'tenzij',\n",
+       " 'terwijl',\n",
+       " 'thans',\n",
+       " 'tien',\n",
+       " 'tiende',\n",
+       " 'tijdens',\n",
+       " 'tja',\n",
+       " 'toch',\n",
+       " 'toe',\n",
+       " 'toen',\n",
+       " 'toenmaals',\n",
+       " 'toenmalig',\n",
+       " 'tot',\n",
+       " 'totdat',\n",
+       " 'tussen',\n",
+       " 'twee',\n",
+       " 'tweede',\n",
+       " 'u',\n",
+       " 'uit',\n",
+       " 'uitgezonderd',\n",
+       " 'uw',\n",
+       " 'vaak',\n",
+       " 'vaakwat',\n",
+       " 'van',\n",
+       " 'vanaf',\n",
+       " 'vandaan',\n",
+       " 'vanuit',\n",
+       " 'vanwege',\n",
+       " 'veel',\n",
+       " 'veeleer',\n",
+       " 'veertig',\n",
+       " 'verder',\n",
+       " 'verscheidene',\n",
+       " 'verschillende',\n",
+       " 'vervolgens',\n",
+       " 'via',\n",
+       " 'vier',\n",
+       " 'vierde',\n",
+       " 'vijf',\n",
+       " 'vijfde',\n",
+       " 'vijftig',\n",
+       " 'vol',\n",
+       " 'volgend',\n",
+       " 'volgens',\n",
+       " 'voor',\n",
+       " 'vooraf',\n",
+       " 'vooral',\n",
+       " 'vooralsnog',\n",
+       " 'voorbij',\n",
+       " 'voordat',\n",
+       " 'voordezen',\n",
+       " 'voordien',\n",
+       " 'voorheen',\n",
+       " 'voorop',\n",
+       " 'voorts',\n",
+       " 'vooruit',\n",
+       " 'vrij',\n",
+       " 'vroeg',\n",
+       " 'waar',\n",
+       " 'waarom',\n",
+       " 'waarschijnlijk',\n",
+       " 'wanneer',\n",
+       " 'want',\n",
+       " 'waren',\n",
+       " 'was',\n",
+       " 'wat',\n",
+       " 'we',\n",
+       " 'wederom',\n",
+       " 'weer',\n",
+       " 'weg',\n",
+       " 'wegens',\n",
+       " 'weinig',\n",
+       " 'wel',\n",
+       " 'weldra',\n",
+       " 'welk',\n",
+       " 'welke',\n",
+       " 'werd',\n",
+       " 'werden',\n",
+       " 'werder',\n",
+       " 'wezen',\n",
+       " 'whatever',\n",
+       " 'wie',\n",
+       " 'wiens',\n",
+       " 'wier',\n",
+       " 'wij',\n",
+       " 'wijzelf',\n",
+       " 'wil',\n",
+       " 'wilden',\n",
+       " 'willen',\n",
+       " 'word',\n",
+       " 'worden',\n",
+       " 'wordt',\n",
+       " 'zal',\n",
+       " 'ze',\n",
+       " 'zei',\n",
+       " 'zeker',\n",
+       " 'zelf',\n",
+       " 'zelfde',\n",
+       " 'zelfs',\n",
+       " 'zes',\n",
+       " 'zeven',\n",
+       " 'zich',\n",
+       " 'zichzelf',\n",
+       " 'zij',\n",
+       " 'zijn',\n",
+       " 'zijne',\n",
+       " 'zijzelf',\n",
+       " 'zo',\n",
+       " 'zoals',\n",
+       " 'zodat',\n",
+       " 'zodra',\n",
+       " 'zonder',\n",
+       " 'zou',\n",
+       " 'zouden',\n",
+       " 'zowat',\n",
+       " 'zulk',\n",
+       " 'zulke',\n",
+       " 'zullen',\n",
+       " 'zult']"
+      ]
+     },
+     "execution_count": 59,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "#define stopwords from stopwords_nl.txt\n",
+    "with open(\"stopwords-nl.txt\", \"r\") as f:\n",
+    "    stopwords_nl = f.read().splitlines()\n",
+    "\n",
+    "stopwords_nl\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 60,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "CPU times: total: 9min 37s\n",
+      "Wall time: 12min 6s\n"
+     ]
+    },
+    {
+     "data": {
+      "text/plain": [
+       "<bertopic._bertopic.BERTopic at 0x216462f31f0>"
+      ]
+     },
+     "execution_count": 60,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "%%time\n",
+    "\n",
+    "from bertopic import BERTopic\n",
+    "from sklearn.feature_extraction.text import CountVectorizer\n",
+    "from sentence_transformers import SentenceTransformer\n",
+    "from umap import UMAP\n",
+    "\n",
+    "#this model uses a sentence transformer model to embed the documents\n",
+    "\n",
+    "sentence_model = SentenceTransformer(\"paraphrase-multilingual-MiniLM-L12-v2\")\n",
+    "\n",
+    "umap_model = UMAP(n_neighbors=15, n_components=5, \n",
+    "                  min_dist=0.0, metric='cosine', random_state=42)\n",
+    "\n",
+    "\n",
+    "nl_model = BERTopic(embedding_model=sentence_model, umap_model=umap_model)\n",
+    "nl_model.fit(doc_list)\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 65,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "CPU times: total: 20min 50s\n",
+      "Wall time: 14min 44s\n"
+     ]
+    }
+   ],
+   "source": [
+    "%%time\n",
+    "\n",
+    "# This model uses a CountVectorizer to embed the documents\n",
+    "# calculate_probabilities=False to speed up the process\n",
+    "# min_topic_size= can be decreased (e.g. to 6) for smaller datasets. By default it is 10. \n",
+    "\n",
+    "\n",
+    "vectorizer_model = CountVectorizer(stop_words=stopwords_nl)\n",
+    "cv_model = BERTopic(vectorizer_model=vectorizer_model, min_topic_size=6, calculate_probabilities=False, nr_topics=50)\n",
+    "\n",
+    "cv_topics, cv_probs = cv_model.fit_transform(doc_list)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 68,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stderr",
+     "output_type": "stream",
+     "text": [
+      "100%|██████████| 137/137 [00:01<00:00, 69.65it/s]\n"
+     ]
+    },
+    {
+     "data": {
+      "application/vnd.plotly.v1+json": {
+       "config": {
+        "plotlyServerURL": "https://plotly.com"
+       },
+       "data": [
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(61,153,112)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0,
+          0.6970350398938887,
+          0.6970350398938887,
+          0
+         ],
+         "xaxis": "x",
+         "y": [
+          -5,
+          -5,
+          -15,
+          -15
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(61,153,112)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0,
+          0.2915308470845853,
+          0.2915308470845853,
+          0
+         ],
+         "xaxis": "x",
+         "y": [
+          -45,
+          -45,
+          -55,
+          -55
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(61,153,112)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0.2915308470845853,
+          0.33139031101795563,
+          0.33139031101795563,
+          0
+         ],
+         "xaxis": "x",
+         "y": [
+          -50,
+          -50,
+          -65,
+          -65
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(61,153,112)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0,
+          0.38261230103699884,
+          0.38261230103699884,
+          0.33139031101795563
+         ],
+         "xaxis": "x",
+         "y": [
+          -35,
+          -35,
+          -57.5,
+          -57.5
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(61,153,112)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0.38261230103699884,
+          0.45950712349133926,
+          0.45950712349133926,
+          0
+         ],
+         "xaxis": "x",
+         "y": [
+          -46.25,
+          -46.25,
+          -75,
+          -75
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(61,153,112)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0,
+          0.5803024992080655,
+          0.5803024992080655,
+          0.45950712349133926
+         ],
+         "xaxis": "x",
+         "y": [
+          -25,
+          -25,
+          -60.625,
+          -60.625
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(61,153,112)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0.5803024992080655,
+          0.6776184036740045,
+          0.6776184036740045,
+          0
+         ],
+         "xaxis": "x",
+         "y": [
+          -42.8125,
+          -42.8125,
+          -85,
+          -85
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(61,153,112)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0.6970350398938887,
+          0.749788922382108,
+          0.749788922382108,
+          0.6776184036740045
+         ],
+         "xaxis": "x",
+         "y": [
+          -10,
+          -10,
+          -63.90625,
+          -63.90625
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(255,65,54)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0,
+          0.6393157176756754,
+          0.6393157176756754,
+          0
+         ],
+         "xaxis": "x",
+         "y": [
+          -105,
+          -105,
+          -115,
+          -115
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(255,65,54)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0.6393157176756754,
+          0.7717297456491675,
+          0.7717297456491675,
+          0
+         ],
+         "xaxis": "x",
+         "y": [
+          -110,
+          -110,
+          -125,
+          -125
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(255,65,54)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0,
+          0.8329671247720448,
+          0.8329671247720448,
+          0.7717297456491675
+         ],
+         "xaxis": "x",
+         "y": [
+          -95,
+          -95,
+          -117.5,
+          -117.5
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(35,205,205)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0,
+          0.7248737230734899,
+          0.7248737230734899,
+          0
+         ],
+         "xaxis": "x",
+         "y": [
+          -135,
+          -135,
+          -145,
+          -145
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(35,205,205)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0,
+          0.7717297415028617,
+          0.7717297415028617,
+          0
+         ],
+         "xaxis": "x",
+         "y": [
+          -155,
+          -155,
+          -165,
+          -165
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(35,205,205)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0.7248737230734899,
+          0.8959614441190085,
+          0.8959614441190085,
+          0.7717297415028617
+         ],
+         "xaxis": "x",
+         "y": [
+          -140,
+          -140,
+          -160,
+          -160
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(35,205,205)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0.8959614441190085,
+          0.9609179012008117,
+          0.9609179012008117,
+          0
+         ],
+         "xaxis": "x",
+         "y": [
+          -150,
+          -150,
+          -175,
+          -175
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(0,116,217)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0.8329671247720448,
+          1.137353374062549,
+          1.137353374062549,
+          0.9609179012008117
+         ],
+         "xaxis": "x",
+         "y": [
+          -106.25,
+          -106.25,
+          -162.5,
+          -162.5
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(133,20,75)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0,
+          0.7250719900976783,
+          0.7250719900976783,
+          0
+         ],
+         "xaxis": "x",
+         "y": [
+          -185,
+          -185,
+          -195,
+          -195
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(133,20,75)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0,
+          0.6259313964076291,
+          0.6259313964076291,
+          0
+         ],
+         "xaxis": "x",
+         "y": [
+          -205,
+          -205,
+          -215,
+          -215
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(133,20,75)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0.7250719900976783,
+          0.9604719464123074,
+          0.9604719464123074,
+          0.6259313964076291
+         ],
+         "xaxis": "x",
+         "y": [
+          -190,
+          -190,
+          -210,
+          -210
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(0,116,217)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          1.137353374062549,
+          1.2423235489613826,
+          1.2423235489613826,
+          0.9604719464123074
+         ],
+         "xaxis": "x",
+         "y": [
+          -134.375,
+          -134.375,
+          -200,
+          -200
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(255,220,0)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0,
+          0.5650588521051525,
+          0.5650588521051525,
+          0
+         ],
+         "xaxis": "x",
+         "y": [
+          -245,
+          -245,
+          -255,
+          -255
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(255,220,0)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0,
+          0.6247861751774935,
+          0.6247861751774935,
+          0.5650588521051525
+         ],
+         "xaxis": "x",
+         "y": [
+          -235,
+          -235,
+          -250,
+          -250
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(255,220,0)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0.6247861751774935,
+          0.7819518696959927,
+          0.7819518696959927,
+          0
+         ],
+         "xaxis": "x",
+         "y": [
+          -242.5,
+          -242.5,
+          -265,
+          -265
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(255,220,0)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0,
+          0.8448157775190378,
+          0.8448157775190378,
+          0.7819518696959927
+         ],
+         "xaxis": "x",
+         "y": [
+          -225,
+          -225,
+          -253.75,
+          -253.75
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(255,220,0)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0,
+          0.7444108425867759,
+          0.7444108425867759,
+          0
+         ],
+         "xaxis": "x",
+         "y": [
+          -275,
+          -275,
+          -285,
+          -285
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(255,220,0)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0.8448157775190378,
+          0.9708126388592896,
+          0.9708126388592896,
+          0.7444108425867759
+         ],
+         "xaxis": "x",
+         "y": [
+          -239.375,
+          -239.375,
+          -280,
+          -280
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(0,116,217)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          1.2423235489613826,
+          1.3723035858892916,
+          1.3723035858892916,
+          0.9708126388592896
+         ],
+         "xaxis": "x",
+         "y": [
+          -167.1875,
+          -167.1875,
+          -259.6875,
+          -259.6875
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(40,35,35)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0,
+          0.4671286276488671,
+          0.4671286276488671,
+          0
+         ],
+         "xaxis": "x",
+         "y": [
+          -295,
+          -295,
+          -305,
+          -305
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(61,153,112)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0,
+          0.6960457962222124,
+          0.6960457962222124,
+          0
+         ],
+         "xaxis": "x",
+         "y": [
+          -315,
+          -315,
+          -325,
+          -325
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(255,65,54)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0,
+          0.7973883052796276,
+          0.7973883052796276,
+          0
+         ],
+         "xaxis": "x",
+         "y": [
+          -345,
+          -345,
+          -355,
+          -355
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(255,65,54)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0,
+          0.8733359589031346,
+          0.8733359589031346,
+          0.7973883052796276
+         ],
+         "xaxis": "x",
+         "y": [
+          -335,
+          -335,
+          -350,
+          -350
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(0,116,217)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0.6960457962222124,
+          1.0071452533090215,
+          1.0071452533090215,
+          0.8733359589031346
+         ],
+         "xaxis": "x",
+         "y": [
+          -320,
+          -320,
+          -342.5,
+          -342.5
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(35,205,205)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0,
+          0.7895073602275235,
+          0.7895073602275235,
+          0
+         ],
+         "xaxis": "x",
+         "y": [
+          -365,
+          -365,
+          -375,
+          -375
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(35,205,205)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0,
+          0.8377880170905563,
+          0.8377880170905563,
+          0
+         ],
+         "xaxis": "x",
+         "y": [
+          -385,
+          -385,
+          -395,
+          -395
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(35,205,205)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0.7895073602275235,
+          0.9710513425118809,
+          0.9710513425118809,
+          0.8377880170905563
+         ],
+         "xaxis": "x",
+         "y": [
+          -370,
+          -370,
+          -390,
+          -390
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(61,153,112)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0,
+          0.8573105237087493,
+          0.8573105237087493,
+          0
+         ],
+         "xaxis": "x",
+         "y": [
+          -415,
+          -415,
+          -425,
+          -425
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(61,153,112)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0,
+          0.9240047876692478,
+          0.9240047876692478,
+          0.8573105237087493
+         ],
+         "xaxis": "x",
+         "y": [
+          -405,
+          -405,
+          -420,
+          -420
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(61,153,112)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0,
+          0.9089474351340532,
+          0.9089474351340532,
+          0
+         ],
+         "xaxis": "x",
+         "y": [
+          -435,
+          -435,
+          -445,
+          -445
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(61,153,112)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0.9240047876692478,
+          0.9822947467172929,
+          0.9822947467172929,
+          0.9089474351340532
+         ],
+         "xaxis": "x",
+         "y": [
+          -412.5,
+          -412.5,
+          -440,
+          -440
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(255,65,54)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0,
+          0.9056668286262328,
+          0.9056668286262328,
+          0
+         ],
+         "xaxis": "x",
+         "y": [
+          -455,
+          -455,
+          -465,
+          -465
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(255,65,54)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0.9056668286262328,
+          0.9477621335519009,
+          0.9477621335519009,
+          0
+         ],
+         "xaxis": "x",
+         "y": [
+          -460,
+          -460,
+          -475,
+          -475
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(0,116,217)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0.9822947467172929,
+          1.0054909142024975,
+          1.0054909142024975,
+          0.9477621335519009
+         ],
+         "xaxis": "x",
+         "y": [
+          -426.25,
+          -426.25,
+          -467.5,
+          -467.5
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(0,116,217)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0.9710513425118809,
+          1.0487160895024055,
+          1.0487160895024055,
+          1.0054909142024975
+         ],
+         "xaxis": "x",
+         "y": [
+          -380,
+          -380,
+          -446.875,
+          -446.875
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(0,116,217)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          1.0071452533090215,
+          1.175145456281094,
+          1.175145456281094,
+          1.0487160895024055
+         ],
+         "xaxis": "x",
+         "y": [
+          -331.25,
+          -331.25,
+          -413.4375,
+          -413.4375
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(0,116,217)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0.4671286276488671,
+          1.1789681489806791,
+          1.1789681489806791,
+          1.175145456281094
+         ],
+         "xaxis": "x",
+         "y": [
+          -300,
+          -300,
+          -372.34375,
+          -372.34375
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(35,205,205)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0,
+          0.6981779804819096,
+          0.6981779804819096,
+          0
+         ],
+         "xaxis": "x",
+         "y": [
+          -495,
+          -495,
+          -505,
+          -505
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(35,205,205)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0.6981779804819096,
+          0.8239925909368847,
+          0.8239925909368847,
+          0
+         ],
+         "xaxis": "x",
+         "y": [
+          -500,
+          -500,
+          -515,
+          -515
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(35,205,205)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0,
+          0.9577737132325858,
+          0.9577737132325858,
+          0.8239925909368847
+         ],
+         "xaxis": "x",
+         "y": [
+          -485,
+          -485,
+          -507.5,
+          -507.5
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(133,20,75)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0,
+          0.7205135472924864,
+          0.7205135472924864,
+          0
+         ],
+         "xaxis": "x",
+         "y": [
+          -525,
+          -525,
+          -535,
+          -535
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(0,116,217)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0.9577737132325858,
+          1.0950478294028698,
+          1.0950478294028698,
+          0.7205135472924864
+         ],
+         "xaxis": "x",
+         "y": [
+          -496.25,
+          -496.25,
+          -530,
+          -530
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(255,220,0)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0,
+          0.6318337699154604,
+          0.6318337699154604,
+          0
+         ],
+         "xaxis": "x",
+         "y": [
+          -555,
+          -555,
+          -565,
+          -565
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(255,220,0)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0,
+          0.8043592877543224,
+          0.8043592877543224,
+          0.6318337699154604
+         ],
+         "xaxis": "x",
+         "y": [
+          -545,
+          -545,
+          -560,
+          -560
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(255,220,0)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0.8043592877543224,
+          0.8402318163719011,
+          0.8402318163719011,
+          0
+         ],
+         "xaxis": "x",
+         "y": [
+          -552.5,
+          -552.5,
+          -575,
+          -575
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(255,220,0)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0,
+          0.7449098933431239,
+          0.7449098933431239,
+          0
+         ],
+         "xaxis": "x",
+         "y": [
+          -585,
+          -585,
+          -595,
+          -595
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(255,220,0)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0.8402318163719011,
+          0.8566207659543456,
+          0.8566207659543456,
+          0.7449098933431239
+         ],
+         "xaxis": "x",
+         "y": [
+          -563.75,
+          -563.75,
+          -590,
+          -590
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(255,220,0)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0,
+          0.9444743122158163,
+          0.9444743122158163,
+          0
+         ],
+         "xaxis": "x",
+         "y": [
+          -605,
+          -605,
+          -615,
+          -615
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(255,220,0)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0.8566207659543456,
+          0.9790756208576403,
+          0.9790756208576403,
+          0.9444743122158163
+         ],
+         "xaxis": "x",
+         "y": [
+          -576.875,
+          -576.875,
+          -610,
+          -610
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(0,116,217)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          1.0950478294028698,
+          1.152724107790583,
+          1.152724107790583,
+          0.9790756208576403
+         ],
+         "xaxis": "x",
+         "y": [
+          -513.125,
+          -513.125,
+          -593.4375,
+          -593.4375
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(40,35,35)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0,
+          0.8160858030042486,
+          0.8160858030042486,
+          0
+         ],
+         "xaxis": "x",
+         "y": [
+          -625,
+          -625,
+          -635,
+          -635
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(61,153,112)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0,
+          0.9272355813310407,
+          0.9272355813310407,
+          0
+         ],
+         "xaxis": "x",
+         "y": [
+          -645,
+          -645,
+          -655,
+          -655
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(61,153,112)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0.9272355813310407,
+          0.9380614259316319,
+          0.9380614259316319,
+          0
+         ],
+         "xaxis": "x",
+         "y": [
+          -650,
+          -650,
+          -665,
+          -665
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(61,153,112)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0,
+          0.9076526223104028,
+          0.9076526223104028,
+          0
+         ],
+         "xaxis": "x",
+         "y": [
+          -675,
+          -675,
+          -685,
+          -685
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(61,153,112)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0,
+          0.8745101672748483,
+          0.8745101672748483,
+          0
+         ],
+         "xaxis": "x",
+         "y": [
+          -695,
+          -695,
+          -705,
+          -705
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(61,153,112)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0.9076526223104028,
+          0.952158351531652,
+          0.952158351531652,
+          0.8745101672748483
+         ],
+         "xaxis": "x",
+         "y": [
+          -680,
+          -680,
+          -700,
+          -700
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(61,153,112)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0.9380614259316319,
+          0.9811507912154639,
+          0.9811507912154639,
+          0.952158351531652
+         ],
+         "xaxis": "x",
+         "y": [
+          -657.5,
+          -657.5,
+          -690,
+          -690
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(0,116,217)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0.8160858030042486,
+          1.0297222936486559,
+          1.0297222936486559,
+          0.9811507912154639
+         ],
+         "xaxis": "x",
+         "y": [
+          -630,
+          -630,
+          -673.75,
+          -673.75
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(255,65,54)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0,
+          0.8462717672448978,
+          0.8462717672448978,
+          0
+         ],
+         "xaxis": "x",
+         "y": [
+          -725,
+          -725,
+          -735,
+          -735
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(255,65,54)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0,
+          0.9025998753495157,
+          0.9025998753495157,
+          0.8462717672448978
+         ],
+         "xaxis": "x",
+         "y": [
+          -715,
+          -715,
+          -730,
+          -730
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(255,65,54)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0,
+          0.7786802194734046,
+          0.7786802194734046,
+          0
+         ],
+         "xaxis": "x",
+         "y": [
+          -745,
+          -745,
+          -755,
+          -755
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(255,65,54)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0.7786802194734046,
+          0.8869386422024685,
+          0.8869386422024685,
+          0
+         ],
+         "xaxis": "x",
+         "y": [
+          -750,
+          -750,
+          -765,
+          -765
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(255,65,54)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0.9025998753495157,
+          0.9821724746763102,
+          0.9821724746763102,
+          0.8869386422024685
+         ],
+         "xaxis": "x",
+         "y": [
+          -722.5,
+          -722.5,
+          -757.5,
+          -757.5
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(35,205,205)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0,
+          0.7635515559471738,
+          0.7635515559471738,
+          0
+         ],
+         "xaxis": "x",
+         "y": [
+          -795,
+          -795,
+          -805,
+          -805
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(35,205,205)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0,
+          0.857208018709309,
+          0.857208018709309,
+          0.7635515559471738
+         ],
+         "xaxis": "x",
+         "y": [
+          -785,
+          -785,
+          -800,
+          -800
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(35,205,205)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0,
+          0.8879954987645109,
+          0.8879954987645109,
+          0.857208018709309
+         ],
+         "xaxis": "x",
+         "y": [
+          -775,
+          -775,
+          -792.5,
+          -792.5
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(35,205,205)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0.8879954987645109,
+          0.9478571983226701,
+          0.9478571983226701,
+          0
+         ],
+         "xaxis": "x",
+         "y": [
+          -783.75,
+          -783.75,
+          -815,
+          -815
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(0,116,217)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0.9821724746763102,
+          1.0089272706984975,
+          1.0089272706984975,
+          0.9478571983226701
+         ],
+         "xaxis": "x",
+         "y": [
+          -740,
+          -740,
+          -799.375,
+          -799.375
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(0,116,217)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          1.0297222936486559,
+          1.1059478565210952,
+          1.1059478565210952,
+          1.0089272706984975
+         ],
+         "xaxis": "x",
+         "y": [
+          -651.875,
+          -651.875,
+          -769.6875,
+          -769.6875
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(61,153,112)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0,
+          0.6850361771077198,
+          0.6850361771077198,
+          0
+         ],
+         "xaxis": "x",
+         "y": [
+          -845,
+          -845,
+          -855,
+          -855
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(61,153,112)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0.6850361771077198,
+          0.7459973947627201,
+          0.7459973947627201,
+          0
+         ],
+         "xaxis": "x",
+         "y": [
+          -850,
+          -850,
+          -865,
+          -865
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(61,153,112)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0,
+          0.8348791583931824,
+          0.8348791583931824,
+          0.7459973947627201
+         ],
+         "xaxis": "x",
+         "y": [
+          -835,
+          -835,
+          -857.5,
+          -857.5
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(61,153,112)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0.8348791583931824,
+          0.861635721743723,
+          0.861635721743723,
+          0
+         ],
+         "xaxis": "x",
+         "y": [
+          -846.25,
+          -846.25,
+          -875,
+          -875
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(61,153,112)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0,
+          0.9313547534114212,
+          0.9313547534114212,
+          0.861635721743723
+         ],
+         "xaxis": "x",
+         "y": [
+          -825,
+          -825,
+          -860.625,
+          -860.625
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(61,153,112)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0,
+          0.834454624207686,
+          0.834454624207686,
+          0
+         ],
+         "xaxis": "x",
+         "y": [
+          -885,
+          -885,
+          -895,
+          -895
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(61,153,112)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0.9313547534114212,
+          0.9890541967188543,
+          0.9890541967188543,
+          0.834454624207686
+         ],
+         "xaxis": "x",
+         "y": [
+          -842.8125,
+          -842.8125,
+          -890,
+          -890
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(255,65,54)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0,
+          0.7100897623017279,
+          0.7100897623017279,
+          0
+         ],
+         "xaxis": "x",
+         "y": [
+          -925,
+          -925,
+          -935,
+          -935
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(255,65,54)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0,
+          0.7869193526283007,
+          0.7869193526283007,
+          0.7100897623017279
+         ],
+         "xaxis": "x",
+         "y": [
+          -915,
+          -915,
+          -930,
+          -930
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(255,65,54)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0,
+          0.8730746881576785,
+          0.8730746881576785,
+          0.7869193526283007
+         ],
+         "xaxis": "x",
+         "y": [
+          -905,
+          -905,
+          -922.5,
+          -922.5
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(255,65,54)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0.8730746881576785,
+          0.9340406142921678,
+          0.9340406142921678,
+          0
+         ],
+         "xaxis": "x",
+         "y": [
+          -913.75,
+          -913.75,
+          -945,
+          -945
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(255,65,54)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0.9340406142921678,
+          0.9973199221207509,
+          0.9973199221207509,
+          0
+         ],
+         "xaxis": "x",
+         "y": [
+          -929.375,
+          -929.375,
+          -955,
+          -955
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(0,116,217)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0.9890541967188543,
+          1.0255944761717353,
+          1.0255944761717353,
+          0.9973199221207509
+         ],
+         "xaxis": "x",
+         "y": [
+          -866.40625,
+          -866.40625,
+          -942.1875,
+          -942.1875
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(0,116,217)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          1.1059478565210952,
+          1.1166768094466695,
+          1.1166768094466695,
+          1.0255944761717353
+         ],
+         "xaxis": "x",
+         "y": [
+          -710.78125,
+          -710.78125,
+          -904.296875,
+          -904.296875
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(0,116,217)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          1.152724107790583,
+          1.2282652411741835,
+          1.2282652411741835,
+          1.1166768094466695
+         ],
+         "xaxis": "x",
+         "y": [
+          -553.28125,
+          -553.28125,
+          -807.5390625,
+          -807.5390625
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(0,116,217)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          1.1789681489806791,
+          1.3693586857335716,
+          1.3693586857335716,
+          1.2282652411741835
+         ],
+         "xaxis": "x",
+         "y": [
+          -336.171875,
+          -336.171875,
+          -680.41015625,
+          -680.41015625
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(35,205,205)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0,
+          0.5844020365940585,
+          0.5844020365940585,
+          0
+         ],
+         "xaxis": "x",
+         "y": [
+          -965,
+          -965,
+          -975,
+          -975
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(35,205,205)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0.5844020365940585,
+          0.8093161807143326,
+          0.8093161807143326,
+          0
+         ],
+         "xaxis": "x",
+         "y": [
+          -970,
+          -970,
+          -985,
+          -985
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(133,20,75)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0,
+          0.9169480781090199,
+          0.9169480781090199,
+          0
+         ],
+         "xaxis": "x",
+         "y": [
+          -995,
+          -995,
+          -1005,
+          -1005
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(133,20,75)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0,
+          0.8152712781494524,
+          0.8152712781494524,
+          0
+         ],
+         "xaxis": "x",
+         "y": [
+          -1025,
+          -1025,
+          -1035,
+          -1035
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(133,20,75)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0,
+          0.9061933215061845,
+          0.9061933215061845,
+          0.8152712781494524
+         ],
+         "xaxis": "x",
+         "y": [
+          -1015,
+          -1015,
+          -1030,
+          -1030
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(133,20,75)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0.9061933215061845,
+          0.934113960770969,
+          0.934113960770969,
+          0
+         ],
+         "xaxis": "x",
+         "y": [
+          -1022.5,
+          -1022.5,
+          -1045,
+          -1045
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(133,20,75)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0.9169480781090199,
+          0.9735784813663517,
+          0.9735784813663517,
+          0.934113960770969
+         ],
+         "xaxis": "x",
+         "y": [
+          -1000,
+          -1000,
+          -1033.75,
+          -1033.75
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(255,220,0)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0,
+          0.7686952767212835,
+          0.7686952767212835,
+          0
+         ],
+         "xaxis": "x",
+         "y": [
+          -1055,
+          -1055,
+          -1065,
+          -1065
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(255,220,0)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0.7686952767212835,
+          0.8575911186572907,
+          0.8575911186572907,
+          0
+         ],
+         "xaxis": "x",
+         "y": [
+          -1060,
+          -1060,
+          -1075,
+          -1075
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(0,116,217)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0.9735784813663517,
+          1.0538285867244663,
+          1.0538285867244663,
+          0.8575911186572907
+         ],
+         "xaxis": "x",
+         "y": [
+          -1016.875,
+          -1016.875,
+          -1067.5,
+          -1067.5
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(40,35,35)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0,
+          0.8733836639239569,
+          0.8733836639239569,
+          0
+         ],
+         "xaxis": "x",
+         "y": [
+          -1095,
+          -1095,
+          -1105,
+          -1105
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(40,35,35)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0,
+          0.9101910325141502,
+          0.9101910325141502,
+          0.8733836639239569
+         ],
+         "xaxis": "x",
+         "y": [
+          -1085,
+          -1085,
+          -1100,
+          -1100
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(40,35,35)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0,
+          0.8667963314798314,
+          0.8667963314798314,
+          0
+         ],
+         "xaxis": "x",
+         "y": [
+          -1115,
+          -1115,
+          -1125,
+          -1125
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(40,35,35)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0.9101910325141502,
+          0.9225758322057234,
+          0.9225758322057234,
+          0.8667963314798314
+         ],
+         "xaxis": "x",
+         "y": [
+          -1092.5,
+          -1092.5,
+          -1120,
+          -1120
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(40,35,35)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0,
+          0.8606892026112449,
+          0.8606892026112449,
+          0
+         ],
+         "xaxis": "x",
+         "y": [
+          -1135,
+          -1135,
+          -1145,
+          -1145
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(40,35,35)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0.9225758322057234,
+          0.9966774551326175,
+          0.9966774551326175,
+          0.8606892026112449
+         ],
+         "xaxis": "x",
+         "y": [
+          -1106.25,
+          -1106.25,
+          -1140,
+          -1140
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(0,116,217)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          1.0538285867244663,
+          1.0930107213109077,
+          1.0930107213109077,
+          0.9966774551326175
+         ],
+         "xaxis": "x",
+         "y": [
+          -1042.1875,
+          -1042.1875,
+          -1123.125,
+          -1123.125
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(61,153,112)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0,
+          0.7880785863393323,
+          0.7880785863393323,
+          0
+         ],
+         "xaxis": "x",
+         "y": [
+          -1165,
+          -1165,
+          -1175,
+          -1175
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(61,153,112)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0,
+          0.8479077320409313,
+          0.8479077320409313,
+          0.7880785863393323
+         ],
+         "xaxis": "x",
+         "y": [
+          -1155,
+          -1155,
+          -1170,
+          -1170
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(255,65,54)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0,
+          0.7618108960737038,
+          0.7618108960737038,
+          0
+         ],
+         "xaxis": "x",
+         "y": [
+          -1185,
+          -1185,
+          -1195,
+          -1195
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(255,65,54)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0.7618108960737038,
+          0.8547320926199723,
+          0.8547320926199723,
+          0
+         ],
+         "xaxis": "x",
+         "y": [
+          -1190,
+          -1190,
+          -1205,
+          -1205
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(0,116,217)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0.8479077320409313,
+          1.1069614635152114,
+          1.1069614635152114,
+          0.8547320926199723
+         ],
+         "xaxis": "x",
+         "y": [
+          -1162.5,
+          -1162.5,
+          -1197.5,
+          -1197.5
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(0,116,217)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          1.0930107213109077,
+          1.1829504785465856,
+          1.1829504785465856,
+          1.1069614635152114
+         ],
+         "xaxis": "x",
+         "y": [
+          -1082.65625,
+          -1082.65625,
+          -1180,
+          -1180
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(0,116,217)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0.8093161807143326,
+          1.2603789809477999,
+          1.2603789809477999,
+          1.1829504785465856
+         ],
+         "xaxis": "x",
+         "y": [
+          -977.5,
+          -977.5,
+          -1131.328125,
+          -1131.328125
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(0,116,217)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          1.3693586857335716,
+          1.4748034181575806,
+          1.4748034181575806,
+          1.2603789809477999
+         ],
+         "xaxis": "x",
+         "y": [
+          -508.291015625,
+          -508.291015625,
+          -1054.4140625,
+          -1054.4140625
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(0,116,217)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          1.3723035858892916,
+          1.5041366879455755,
+          1.5041366879455755,
+          1.4748034181575806
+         ],
+         "xaxis": "x",
+         "y": [
+          -213.4375,
+          -213.4375,
+          -781.3525390625,
+          -781.3525390625
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(35,205,205)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0,
+          0.6458410552449485,
+          0.6458410552449485,
+          0
+         ],
+         "xaxis": "x",
+         "y": [
+          -1225,
+          -1225,
+          -1235,
+          -1235
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(35,205,205)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0,
+          0.928782445036007,
+          0.928782445036007,
+          0.6458410552449485
+         ],
+         "xaxis": "x",
+         "y": [
+          -1215,
+          -1215,
+          -1230,
+          -1230
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(61,153,112)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0,
+          0.6358318966057056,
+          0.6358318966057056,
+          0
+         ],
+         "xaxis": "x",
+         "y": [
+          -1245,
+          -1245,
+          -1255,
+          -1255
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(61,153,112)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0,
+          0.6991243994803733,
+          0.6991243994803733,
+          0
+         ],
+         "xaxis": "x",
+         "y": [
+          -1265,
+          -1265,
+          -1275,
+          -1275
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(61,153,112)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0.6358318966057056,
+          0.7955488424984521,
+          0.7955488424984521,
+          0.6991243994803733
+         ],
+         "xaxis": "x",
+         "y": [
+          -1250,
+          -1250,
+          -1270,
+          -1270
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(0,116,217)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0.928782445036007,
+          1.075509411867558,
+          1.075509411867558,
+          0.7955488424984521
+         ],
+         "xaxis": "x",
+         "y": [
+          -1222.5,
+          -1222.5,
+          -1260,
+          -1260
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(255,65,54)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0,
+          0.4250237460058952,
+          0.4250237460058952,
+          0
+         ],
+         "xaxis": "x",
+         "y": [
+          -1285,
+          -1285,
+          -1295,
+          -1295
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(0,116,217)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          1.075509411867558,
+          1.1852255839640815,
+          1.1852255839640815,
+          0.4250237460058952
+         ],
+         "xaxis": "x",
+         "y": [
+          -1241.25,
+          -1241.25,
+          -1290,
+          -1290
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(35,205,205)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0,
+          0.47175240068012525,
+          0.47175240068012525,
+          0
+         ],
+         "xaxis": "x",
+         "y": [
+          -1315,
+          -1315,
+          -1325,
+          -1325
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(35,205,205)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0.47175240068012525,
+          0.5402080188232095,
+          0.5402080188232095,
+          0
+         ],
+         "xaxis": "x",
+         "y": [
+          -1320,
+          -1320,
+          -1335,
+          -1335
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(35,205,205)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0,
+          0.6711677145349271,
+          0.6711677145349271,
+          0.5402080188232095
+         ],
+         "xaxis": "x",
+         "y": [
+          -1305,
+          -1305,
+          -1327.5,
+          -1327.5
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(133,20,75)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0,
+          0.5318595105987289,
+          0.5318595105987289,
+          0
+         ],
+         "xaxis": "x",
+         "y": [
+          -1345,
+          -1345,
+          -1355,
+          -1355
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(133,20,75)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0,
+          0.6837106896592275,
+          0.6837106896592275,
+          0
+         ],
+         "xaxis": "x",
+         "y": [
+          -1365,
+          -1365,
+          -1375,
+          -1375
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(133,20,75)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0.5318595105987289,
+          0.8876548747387701,
+          0.8876548747387701,
+          0.6837106896592275
+         ],
+         "xaxis": "x",
+         "y": [
+          -1350,
+          -1350,
+          -1370,
+          -1370
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(0,116,217)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0.6711677145349271,
+          1.0081117537767437,
+          1.0081117537767437,
+          0.8876548747387701
+         ],
+         "xaxis": "x",
+         "y": [
+          -1316.25,
+          -1316.25,
+          -1360,
+          -1360
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(0,116,217)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          1.1852255839640815,
+          1.222009506069191,
+          1.222009506069191,
+          1.0081117537767437
+         ],
+         "xaxis": "x",
+         "y": [
+          -1265.625,
+          -1265.625,
+          -1338.125,
+          -1338.125
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(0,116,217)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          1.5041366879455755,
+          1.825243702558342,
+          1.825243702558342,
+          1.222009506069191
+         ],
+         "xaxis": "x",
+         "y": [
+          -497.39501953125,
+          -497.39501953125,
+          -1301.875,
+          -1301.875
+         ],
+         "yaxis": "y"
+        },
+        {
+         "hoverinfo": "text",
+         "marker": {
+          "color": "rgb(0,116,217)"
+         },
+         "mode": "lines",
+         "type": "scatter",
+         "x": [
+          0.749788922382108,
+          1.9895088878706537,
+          1.9895088878706537,
+          1.825243702558342
+         ],
+         "xaxis": "x",
+         "y": [
+          -36.953125,
+          -36.953125,
+          -899.635009765625,
+          -899.635009765625
+         ],
+         "yaxis": "y"
+        }
+       ],
+       "layout": {
+        "autosize": false,
+        "height": 2270,
+        "hoverlabel": {
+         "bgcolor": "white",
+         "font": {
+          "family": "Rockwell",
+          "size": 16
+         }
+        },
+        "hovermode": "closest",
+        "plot_bgcolor": "#ECEFF1",
+        "showlegend": false,
+        "template": {
+         "data": {
+          "bar": [
+           {
+            "error_x": {
+             "color": "#2a3f5f"
+            },
+            "error_y": {
+             "color": "#2a3f5f"
+            },
+            "marker": {
+             "line": {
+              "color": "white",
+              "width": 0.5
+             },
+             "pattern": {
+              "fillmode": "overlay",
+              "size": 10,
+              "solidity": 0.2
+             }
+            },
+            "type": "bar"
+           }
+          ],
+          "barpolar": [
+           {
+            "marker": {
+             "line": {
+              "color": "white",
+              "width": 0.5
+             },
+             "pattern": {
+              "fillmode": "overlay",
+              "size": 10,
+              "solidity": 0.2
+             }
+            },
+            "type": "barpolar"
+           }
+          ],
+          "carpet": [
+           {
+            "aaxis": {
+             "endlinecolor": "#2a3f5f",
+             "gridcolor": "#C8D4E3",
+             "linecolor": "#C8D4E3",
+             "minorgridcolor": "#C8D4E3",
+             "startlinecolor": "#2a3f5f"
+            },
+            "baxis": {
+             "endlinecolor": "#2a3f5f",
+             "gridcolor": "#C8D4E3",
+             "linecolor": "#C8D4E3",
+             "minorgridcolor": "#C8D4E3",
+             "startlinecolor": "#2a3f5f"
+            },
+            "type": "carpet"
+           }
+          ],
+          "choropleth": [
+           {
+            "colorbar": {
+             "outlinewidth": 0,
+             "ticks": ""
+            },
+            "type": "choropleth"
+           }
+          ],
+          "contour": [
+           {
+            "colorbar": {
+             "outlinewidth": 0,
+             "ticks": ""
+            },
+            "colorscale": [
+             [
+              0,
+              "#0d0887"
+             ],
+             [
+              0.1111111111111111,
+              "#46039f"
+             ],
+             [
+              0.2222222222222222,
+              "#7201a8"
+             ],
+             [
+              0.3333333333333333,
+              "#9c179e"
+             ],
+             [
+              0.4444444444444444,
+              "#bd3786"
+             ],
+             [
+              0.5555555555555556,
+              "#d8576b"
+             ],
+             [
+              0.6666666666666666,
+              "#ed7953"
+             ],
+             [
+              0.7777777777777778,
+              "#fb9f3a"
+             ],
+             [
+              0.8888888888888888,
+              "#fdca26"
+             ],
+             [
+              1,
+              "#f0f921"
+             ]
+            ],
+            "type": "contour"
+           }
+          ],
+          "contourcarpet": [
+           {
+            "colorbar": {
+             "outlinewidth": 0,
+             "ticks": ""
+            },
+            "type": "contourcarpet"
+           }
+          ],
+          "heatmap": [
+           {
+            "colorbar": {
+             "outlinewidth": 0,
+             "ticks": ""
+            },
+            "colorscale": [
+             [
+              0,
+              "#0d0887"
+             ],
+             [
+              0.1111111111111111,
+              "#46039f"
+             ],
+             [
+              0.2222222222222222,
+              "#7201a8"
+             ],
+             [
+              0.3333333333333333,
+              "#9c179e"
+             ],
+             [
+              0.4444444444444444,
+              "#bd3786"
+             ],
+             [
+              0.5555555555555556,
+              "#d8576b"
+             ],
+             [
+              0.6666666666666666,
+              "#ed7953"
+             ],
+             [
+              0.7777777777777778,
+              "#fb9f3a"
+             ],
+             [
+              0.8888888888888888,
+              "#fdca26"
+             ],
+             [
+              1,
+              "#f0f921"
+             ]
+            ],
+            "type": "heatmap"
+           }
+          ],
+          "heatmapgl": [
+           {
+            "colorbar": {
+             "outlinewidth": 0,
+             "ticks": ""
+            },
+            "colorscale": [
+             [
+              0,
+              "#0d0887"
+             ],
+             [
+              0.1111111111111111,
+              "#46039f"
+             ],
+             [
+              0.2222222222222222,
+              "#7201a8"
+             ],
+             [
+              0.3333333333333333,
+              "#9c179e"
+             ],
+             [
+              0.4444444444444444,
+              "#bd3786"
+             ],
+             [
+              0.5555555555555556,
+              "#d8576b"
+             ],
+             [
+              0.6666666666666666,
+              "#ed7953"
+             ],
+             [
+              0.7777777777777778,
+              "#fb9f3a"
+             ],
+             [
+              0.8888888888888888,
+              "#fdca26"
+             ],
+             [
+              1,
+              "#f0f921"
+             ]
+            ],
+            "type": "heatmapgl"
+           }
+          ],
+          "histogram": [
+           {
+            "marker": {
+             "pattern": {
+              "fillmode": "overlay",
+              "size": 10,
+              "solidity": 0.2
+             }
+            },
+            "type": "histogram"
+           }
+          ],
+          "histogram2d": [
+           {
+            "colorbar": {
+             "outlinewidth": 0,
+             "ticks": ""
+            },
+            "colorscale": [
+             [
+              0,
+              "#0d0887"
+             ],
+             [
+              0.1111111111111111,
+              "#46039f"
+             ],
+             [
+              0.2222222222222222,
+              "#7201a8"
+             ],
+             [
+              0.3333333333333333,
+              "#9c179e"
+             ],
+             [
+              0.4444444444444444,
+              "#bd3786"
+             ],
+             [
+              0.5555555555555556,
+              "#d8576b"
+             ],
+             [
+              0.6666666666666666,
+              "#ed7953"
+             ],
+             [
+              0.7777777777777778,
+              "#fb9f3a"
+             ],
+             [
+              0.8888888888888888,
+              "#fdca26"
+             ],
+             [
+              1,
+              "#f0f921"
+             ]
+            ],
+            "type": "histogram2d"
+           }
+          ],
+          "histogram2dcontour": [
+           {
+            "colorbar": {
+             "outlinewidth": 0,
+             "ticks": ""
+            },
+            "colorscale": [
+             [
+              0,
+              "#0d0887"
+             ],
+             [
+              0.1111111111111111,
+              "#46039f"
+             ],
+             [
+              0.2222222222222222,
+              "#7201a8"
+             ],
+             [
+              0.3333333333333333,
+              "#9c179e"
+             ],
+             [
+              0.4444444444444444,
+              "#bd3786"
+             ],
+             [
+              0.5555555555555556,
+              "#d8576b"
+             ],
+             [
+              0.6666666666666666,
+              "#ed7953"
+             ],
+             [
+              0.7777777777777778,
+              "#fb9f3a"
+             ],
+             [
+              0.8888888888888888,
+              "#fdca26"
+             ],
+             [
+              1,
+              "#f0f921"
+             ]
+            ],
+            "type": "histogram2dcontour"
+           }
+          ],
+          "mesh3d": [
+           {
+            "colorbar": {
+             "outlinewidth": 0,
+             "ticks": ""
+            },
+            "type": "mesh3d"
+           }
+          ],
+          "parcoords": [
+           {
+            "line": {
+             "colorbar": {
+              "outlinewidth": 0,
+              "ticks": ""
+             }
+            },
+            "type": "parcoords"
+           }
+          ],
+          "pie": [
+           {
+            "automargin": true,
+            "type": "pie"
+           }
+          ],
+          "scatter": [
+           {
+            "fillpattern": {
+             "fillmode": "overlay",
+             "size": 10,
+             "solidity": 0.2
+            },
+            "type": "scatter"
+           }
+          ],
+          "scatter3d": [
+           {
+            "line": {
+             "colorbar": {
+              "outlinewidth": 0,
+              "ticks": ""
+             }
+            },
+            "marker": {
+             "colorbar": {
+              "outlinewidth": 0,
+              "ticks": ""
+             }
+            },
+            "type": "scatter3d"
+           }
+          ],
+          "scattercarpet": [
+           {
+            "marker": {
+             "colorbar": {
+              "outlinewidth": 0,
+              "ticks": ""
+             }
+            },
+            "type": "scattercarpet"
+           }
+          ],
+          "scattergeo": [
+           {
+            "marker": {
+             "colorbar": {
+              "outlinewidth": 0,
+              "ticks": ""
+             }
+            },
+            "type": "scattergeo"
+           }
+          ],
+          "scattergl": [
+           {
+            "marker": {
+             "colorbar": {
+              "outlinewidth": 0,
+              "ticks": ""
+             }
+            },
+            "type": "scattergl"
+           }
+          ],
+          "scattermapbox": [
+           {
+            "marker": {
+             "colorbar": {
+              "outlinewidth": 0,
+              "ticks": ""
+             }
+            },
+            "type": "scattermapbox"
+           }
+          ],
+          "scatterpolar": [
+           {
+            "marker": {
+             "colorbar": {
+              "outlinewidth": 0,
+              "ticks": ""
+             }
+            },
+            "type": "scatterpolar"
+           }
+          ],
+          "scatterpolargl": [
+           {
+            "marker": {
+             "colorbar": {
+              "outlinewidth": 0,
+              "ticks": ""
+             }
+            },
+            "type": "scatterpolargl"
+           }
+          ],
+          "scatterternary": [
+           {
+            "marker": {
+             "colorbar": {
+              "outlinewidth": 0,
+              "ticks": ""
+             }
+            },
+            "type": "scatterternary"
+           }
+          ],
+          "surface": [
+           {
+            "colorbar": {
+             "outlinewidth": 0,
+             "ticks": ""
+            },
+            "colorscale": [
+             [
+              0,
+              "#0d0887"
+             ],
+             [
+              0.1111111111111111,
+              "#46039f"
+             ],
+             [
+              0.2222222222222222,
+              "#7201a8"
+             ],
+             [
+              0.3333333333333333,
+              "#9c179e"
+             ],
+             [
+              0.4444444444444444,
+              "#bd3786"
+             ],
+             [
+              0.5555555555555556,
+              "#d8576b"
+             ],
+             [
+              0.6666666666666666,
+              "#ed7953"
+             ],
+             [
+              0.7777777777777778,
+              "#fb9f3a"
+             ],
+             [
+              0.8888888888888888,
+              "#fdca26"
+             ],
+             [
+              1,
+              "#f0f921"
+             ]
+            ],
+            "type": "surface"
+           }
+          ],
+          "table": [
+           {
+            "cells": {
+             "fill": {
+              "color": "#EBF0F8"
+             },
+             "line": {
+              "color": "white"
+             }
+            },
+            "header": {
+             "fill": {
+              "color": "#C8D4E3"
+             },
+             "line": {
+              "color": "white"
+             }
+            },
+            "type": "table"
+           }
+          ]
+         },
+         "layout": {
+          "annotationdefaults": {
+           "arrowcolor": "#2a3f5f",
+           "arrowhead": 0,
+           "arrowwidth": 1
+          },
+          "autotypenumbers": "strict",
+          "coloraxis": {
+           "colorbar": {
+            "outlinewidth": 0,
+            "ticks": ""
+           }
+          },
+          "colorscale": {
+           "diverging": [
+            [
+             0,
+             "#8e0152"
+            ],
+            [
+             0.1,
+             "#c51b7d"
+            ],
+            [
+             0.2,
+             "#de77ae"
+            ],
+            [
+             0.3,
+             "#f1b6da"
+            ],
+            [
+             0.4,
+             "#fde0ef"
+            ],
+            [
+             0.5,
+             "#f7f7f7"
+            ],
+            [
+             0.6,
+             "#e6f5d0"
+            ],
+            [
+             0.7,
+             "#b8e186"
+            ],
+            [
+             0.8,
+             "#7fbc41"
+            ],
+            [
+             0.9,
+             "#4d9221"
+            ],
+            [
+             1,
+             "#276419"
+            ]
+           ],
+           "sequential": [
+            [
+             0,
+             "#0d0887"
+            ],
+            [
+             0.1111111111111111,
+             "#46039f"
+            ],
+            [
+             0.2222222222222222,
+             "#7201a8"
+            ],
+            [
+             0.3333333333333333,
+             "#9c179e"
+            ],
+            [
+             0.4444444444444444,
+             "#bd3786"
+            ],
+            [
+             0.5555555555555556,
+             "#d8576b"
+            ],
+            [
+             0.6666666666666666,
+             "#ed7953"
+            ],
+            [
+             0.7777777777777778,
+             "#fb9f3a"
+            ],
+            [
+             0.8888888888888888,
+             "#fdca26"
+            ],
+            [
+             1,
+             "#f0f921"
+            ]
+           ],
+           "sequentialminus": [
+            [
+             0,
+             "#0d0887"
+            ],
+            [
+             0.1111111111111111,
+             "#46039f"
+            ],
+            [
+             0.2222222222222222,
+             "#7201a8"
+            ],
+            [
+             0.3333333333333333,
+             "#9c179e"
+            ],
+            [
+             0.4444444444444444,
+             "#bd3786"
+            ],
+            [
+             0.5555555555555556,
+             "#d8576b"
+            ],
+            [
+             0.6666666666666666,
+             "#ed7953"
+            ],
+            [
+             0.7777777777777778,
+             "#fb9f3a"
+            ],
+            [
+             0.8888888888888888,
+             "#fdca26"
+            ],
+            [
+             1,
+             "#f0f921"
+            ]
+           ]
+          },
+          "colorway": [
+           "#636efa",
+           "#EF553B",
+           "#00cc96",
+           "#ab63fa",
+           "#FFA15A",
+           "#19d3f3",
+           "#FF6692",
+           "#B6E880",
+           "#FF97FF",
+           "#FECB52"
+          ],
+          "font": {
+           "color": "#2a3f5f"
+          },
+          "geo": {
+           "bgcolor": "white",
+           "lakecolor": "white",
+           "landcolor": "white",
+           "showlakes": true,
+           "showland": true,
+           "subunitcolor": "#C8D4E3"
+          },
+          "hoverlabel": {
+           "align": "left"
+          },
+          "hovermode": "closest",
+          "mapbox": {
+           "style": "light"
+          },
+          "paper_bgcolor": "white",
+          "plot_bgcolor": "white",
+          "polar": {
+           "angularaxis": {
+            "gridcolor": "#EBF0F8",
+            "linecolor": "#EBF0F8",
+            "ticks": ""
+           },
+           "bgcolor": "white",
+           "radialaxis": {
+            "gridcolor": "#EBF0F8",
+            "linecolor": "#EBF0F8",
+            "ticks": ""
+           }
+          },
+          "scene": {
+           "xaxis": {
+            "backgroundcolor": "white",
+            "gridcolor": "#DFE8F3",
+            "gridwidth": 2,
+            "linecolor": "#EBF0F8",
+            "showbackground": true,
+            "ticks": "",
+            "zerolinecolor": "#EBF0F8"
+           },
+           "yaxis": {
+            "backgroundcolor": "white",
+            "gridcolor": "#DFE8F3",
+            "gridwidth": 2,
+            "linecolor": "#EBF0F8",
+            "showbackground": true,
+            "ticks": "",
+            "zerolinecolor": "#EBF0F8"
+           },
+           "zaxis": {
+            "backgroundcolor": "white",
+            "gridcolor": "#DFE8F3",
+            "gridwidth": 2,
+            "linecolor": "#EBF0F8",
+            "showbackground": true,
+            "ticks": "",
+            "zerolinecolor": "#EBF0F8"
+           }
+          },
+          "shapedefaults": {
+           "line": {
+            "color": "#2a3f5f"
+           }
+          },
+          "ternary": {
+           "aaxis": {
+            "gridcolor": "#DFE8F3",
+            "linecolor": "#A2B1C6",
+            "ticks": ""
+           },
+           "baxis": {
+            "gridcolor": "#DFE8F3",
+            "linecolor": "#A2B1C6",
+            "ticks": ""
+           },
+           "bgcolor": "white",
+           "caxis": {
+            "gridcolor": "#DFE8F3",
+            "linecolor": "#A2B1C6",
+            "ticks": ""
+           }
+          },
+          "title": {
+           "x": 0.05
+          },
+          "xaxis": {
+           "automargin": true,
+           "gridcolor": "#EBF0F8",
+           "linecolor": "#EBF0F8",
+           "ticks": "",
+           "title": {
+            "standoff": 15
+           },
+           "zerolinecolor": "#EBF0F8",
+           "zerolinewidth": 2
+          },
+          "yaxis": {
+           "automargin": true,
+           "gridcolor": "#EBF0F8",
+           "linecolor": "#EBF0F8",
+           "ticks": "",
+           "title": {
+            "standoff": 15
+           },
+           "zerolinecolor": "#EBF0F8",
+           "zerolinewidth": 2
+          }
+         }
+        },
+        "title": {
+         "font": {
+          "color": "Black",
+          "size": 22
+         },
+         "text": "<b>Hierarchical Clustering</b>",
+         "x": 0.5,
+         "xanchor": "center",
+         "yanchor": "top"
+        },
+        "width": 1000,
+        "xaxis": {
+         "mirror": "allticks",
+         "rangemode": "tozero",
+         "showgrid": false,
+         "showline": true,
+         "showticklabels": true,
+         "ticks": "outside",
+         "type": "linear",
+         "zeroline": false
+        },
+        "yaxis": {
+         "mirror": "allticks",
+         "range": [
+          -1380,
+          0
+         ],
+         "rangemode": "tozero",
+         "showgrid": false,
+         "showline": true,
+         "showticklabels": true,
+         "tickmode": "array",
+         "ticks": "outside",
+         "ticktext": [
+          "103_gershkovich_russische_r...",
+          "29_prigozjin_poetin_wagner",
+          "21_oekraense_rusland_oekrane",
+          "85_russische_oekraense_aanval",
+          "33_russische_oekrane_rusland",
+          "65_drones_oekrane_oekraense",
+          "71_oekrane_oekraense_rusland",
+          "94_zelensky_oekraense_oekrane",
+          "20_erdogan_kilicdaroglu_tur...",
+          "26_graden_temperaturen_temp...",
+          "4_water_waterschap_drinkwater",
+          "52_regenval_overstromingen_...",
+          "72_code_storm_orkaan",
+          "113_afval_avr_schip",
+          "0_brand_brandweer_vuur",
+          "57_schip_vrachtschip_freman...",
+          "133_bosbranden_anwb_gardameer",
+          "114_titanic_titan_oceangate",
+          "55_bus_bussen_chauffeurs",
+          "137_tram_reizigers_vervoerder",
+          "79_treinen_prorail_trein",
+          "75_storing_treinen_prorail",
+          "125_jongen_jeugdcircus_kozp",
+          "64_schietpartij_steekpartij...",
+          "2_politie_man_agenten",
+          "6_rotterdam_erasmus_politie",
+          "51_auto_automobilist_bestuu...",
+          "67_drugslab_politie_jerrycans",
+          "27_cocane_drugs_douane",
+          "130_dion_dinsdag_2023",
+          "104_finale_songfestival_2023",
+          "131_ajax_fside_sneijder",
+          "38_stadion_supporters_fc",
+          "132_feyenoord_huldiging_15",
+          "83_feest_rave_feestgangers",
+          "32_festival_bezoekers_festi...",
+          "88_fans_concert_burna",
+          "61_album_nummer_the",
+          "11_film_films_acteurs",
+          "109_biervliet_birkin_boek",
+          "34_museum_tentoonstelling_c...",
+          "53_monument_vlissingen_kwf",
+          "50_slavernij_excuses_slaver...",
+          "68_charles_kroning_koning",
+          "108_harry_mirror_journalisten",
+          "43_radio_qmusic_fm",
+          "74_hooijdonk_steijn_sport",
+          "105_fifa_clearing_house",
+          "116_microsoft_overname_bliz...",
+          "35_twitter_musk_meta",
+          "18_google_ai_chatgpt",
+          "90_view_street_google",
+          "111_acm_momfluencers_lg",
+          "119_acm_prijzen_consumenten",
+          "5_bank_banken_rente",
+          "3_euro_miljoen_miljard",
+          "46_gas_co2_projecten",
+          "100_werklozen_vertrouwen_cbs",
+          "42_procent_inflatie_prijzen",
+          "54_heijn_materie_albert",
+          "87_nedcar_vdl_fnv",
+          "84_big_bazar_schuldeisers",
+          "62_chemours_pfas_dordrecht",
+          "49_tata_steel_staal",
+          "123_pup_pups_zeehondencentrum",
+          "86_restaurant_restaurants_r...",
+          "77_weijden_file_kilometer",
+          "98_park_fou_puy",
+          "126_img_keijzer_schade",
+          "93_amsterdam_erotisch_teken...",
+          "110_coffeeshops_coffeeshop_...",
+          "127_danswereld_dansers_woelki",
+          "91_fraude_weekers_uwv",
+          "106_commissarissen_bestuurd...",
+          "9_studenten_universiteit_un...",
+          "13_leerlingen_scholen_school",
+          "97_vacansoleil_carnaval_tra...",
+          "134_kinderic_umc_beschermin...",
+          "28_virus_vaccin_covid",
+          "22_patinten_medicijnen_nza",
+          "96_gedetineerden_inspectie_...",
+          "102_automaten_hack_rdi",
+          "99_brazili_lula_braziliaanse",
+          "24_ecuador_villavicencio_ki...",
+          "7_video_struik_tiktok",
+          "1_vandaag_goedemorgen_graden",
+          "10_gas_klimmers_beving",
+          "48_marokko_marokkaanse_aard...",
+          "95_berlusconi_amber_bbc",
+          "70_berlusconi_italiaanse_de...",
+          "76_babys_baby_verpleegkundige",
+          "69_zwangerschapsvergiftigin...",
+          "19_rechtbank_middel_beroep",
+          "31_ondernemers_man_mannen",
+          "40_taghi_weski_advocaat",
+          "124_sloot_peru_holloway",
+          "81_tunesi_saied_migranten",
+          "23_migranten_boot_kustwacht",
+          "136_migranten_title_42",
+          "120_navalny_strafkolonie_na...",
+          "92_belarus_protasevitsj_loe...",
+          "37_a12_extinction_rebellion",
+          "80_protesten_worstelaars_so...",
+          "36_iran_iraanse_gevangenenr...",
+          "128_khan_oudpremier_islamabad",
+          "63_stemmen_verkiezingen_par...",
+          "58_mccarthy_biden_republike...",
+          "12_trump_oudpresident_georgia",
+          "78_kosovo_servirs_servi",
+          "14_niger_bazoum_ecowas",
+          "89_myanmar_suu_kyi",
+          "30_sudan_rsf_khartoem",
+          "15_isralische_isral_palesti...",
+          "47_azerbeidzjan_nagornokara...",
+          "107_rwanda_genocide_kabuga",
+          "122_japanse_lozen_fukushima",
+          "8_china_chinese_taiwan",
+          "45_noordkorea_kim_noordkore...",
+          "59_canada_canadese_india",
+          "73_india_modi_indiase",
+          "117_maan_maanlander_india",
+          "135_gokbedrijven_gokken_onl...",
+          "129_kamer_opvang_spreidings...",
+          "66_asielzoekers_gemeenten_b...",
+          "56_lhbtiers_landen_derdelan...",
+          "16_europese_europees_wet",
+          "118_hoekstra_timmermans_der...",
+          "121_timmermans_partiman_eur...",
+          "115_boeren_rvo_adema",
+          "82_boeren_landbouwakkoord_a...",
+          "39_minister_wiersma_rutte",
+          "60_rutte_10_maandag",
+          "112_rutte_kabinet_groningers",
+          "17_kabinet_val_rutte",
+          "101_omtzigt_partij_kandidaten",
+          "25_omtzigt_cda_kamer",
+          "41_ouwehand_bestuur_partij",
+          "44_bbb_coalitie_groenlinks"
+         ],
+         "tickvals": [
+          -5,
+          -15,
+          -25,
+          -35,
+          -45,
+          -55,
+          -65,
+          -75,
+          -85,
+          -95,
+          -105,
+          -115,
+          -125,
+          -135,
+          -145,
+          -155,
+          -165,
+          -175,
+          -185,
+          -195,
+          -205,
+          -215,
+          -225,
+          -235,
+          -245,
+          -255,
+          -265,
+          -275,
+          -285,
+          -295,
+          -305,
+          -315,
+          -325,
+          -335,
+          -345,
+          -355,
+          -365,
+          -375,
+          -385,
+          -395,
+          -405,
+          -415,
+          -425,
+          -435,
+          -445,
+          -455,
+          -465,
+          -475,
+          -485,
+          -495,
+          -505,
+          -515,
+          -525,
+          -535,
+          -545,
+          -555,
+          -565,
+          -575,
+          -585,
+          -595,
+          -605,
+          -615,
+          -625,
+          -635,
+          -645,
+          -655,
+          -665,
+          -675,
+          -685,
+          -695,
+          -705,
+          -715,
+          -725,
+          -735,
+          -745,
+          -755,
+          -765,
+          -775,
+          -785,
+          -795,
+          -805,
+          -815,
+          -825,
+          -835,
+          -845,
+          -855,
+          -865,
+          -875,
+          -885,
+          -895,
+          -905,
+          -915,
+          -925,
+          -935,
+          -945,
+          -955,
+          -965,
+          -975,
+          -985,
+          -995,
+          -1005,
+          -1015,
+          -1025,
+          -1035,
+          -1045,
+          -1055,
+          -1065,
+          -1075,
+          -1085,
+          -1095,
+          -1105,
+          -1115,
+          -1125,
+          -1135,
+          -1145,
+          -1155,
+          -1165,
+          -1175,
+          -1185,
+          -1195,
+          -1205,
+          -1215,
+          -1225,
+          -1235,
+          -1245,
+          -1255,
+          -1265,
+          -1275,
+          -1285,
+          -1295,
+          -1305,
+          -1315,
+          -1325,
+          -1335,
+          -1345,
+          -1355,
+          -1365,
+          -1375
+         ],
+         "type": "linear",
+         "zeroline": false
+        }
+       }
+      }
+     },
+     "metadata": {},
+     "output_type": "display_data"
+    }
+   ],
+   "source": [
+    "hierarchical_topics = cv_model.hierarchical_topics(doc_list)\n",
+    "fig = cv_model.visualize_hierarchy()\n",
+    "fig"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 63,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/html": [
+       "<div>\n",
+       "<style scoped>\n",
+       "    .dataframe tbody tr th:only-of-type {\n",
+       "        vertical-align: middle;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe tbody tr th {\n",
+       "        vertical-align: top;\n",
+       "    }\n",
+       "\n",
+       "    .dataframe thead th {\n",
+       "        text-align: right;\n",
+       "    }\n",
+       "</style>\n",
+       "<table border=\"1\" class=\"dataframe\">\n",
+       "  <thead>\n",
+       "    <tr style=\"text-align: right;\">\n",
+       "      <th></th>\n",
+       "      <th>Topic</th>\n",
+       "      <th>Count</th>\n",
+       "      <th>Name</th>\n",
+       "      <th>Representation</th>\n",
+       "      <th>Representative_Docs</th>\n",
+       "    </tr>\n",
+       "  </thead>\n",
+       "  <tbody>\n",
+       "    <tr>\n",
+       "      <th>0</th>\n",
+       "      <td>-1</td>\n",
+       "      <td>1533</td>\n",
+       "      <td>-1_de_een_het_van</td>\n",
+       "      <td>[de, een, het, van, in, dat, en, is, te, die]</td>\n",
+       "      <td>[Vanavond om 21.00 uur is een groot deel van h...</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>1</th>\n",
+       "      <td>0</td>\n",
+       "      <td>287</td>\n",
+       "      <td>0_oekraïne_russische_rusland_oekraïense</td>\n",
+       "      <td>[oekraïne, russische, rusland, oekraïense, de,...</td>\n",
+       "      <td>[zondag 27 augustus, 22:30'Russische zakenman ...</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>2</th>\n",
+       "      <td>1</td>\n",
+       "      <td>157</td>\n",
+       "      <td>1_dieren_dier_vogels_het</td>\n",
+       "      <td>[dieren, dier, vogels, het, wolf, een, de, in,...</td>\n",
+       "      <td>[Het blauwtongvirus verspreidt zich in rap tem...</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>3</th>\n",
+       "      <td>2</td>\n",
+       "      <td>149</td>\n",
+       "      <td>2_partij_kamer_lijsttrekker_verkiezingen</td>\n",
+       "      <td>[partij, kamer, lijsttrekker, verkiezingen, tw...</td>\n",
+       "      <td>[donderdag 21 september, 23:54Ook wachtgeld vo...</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>4</th>\n",
+       "      <td>3</td>\n",
+       "      <td>143</td>\n",
+       "      <td>3_je_vandaag_graden_hier</td>\n",
+       "      <td>[je, vandaag, graden, hier, de, in, het, en, w...</td>\n",
+       "      <td>[Goedemorgen! De eerste Nederlandse scouts die...</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>...</th>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "      <td>...</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>103</th>\n",
+       "      <td>102</td>\n",
+       "      <td>11</td>\n",
+       "      <td>102_biden_hunter_republikeinen_zoon</td>\n",
+       "      <td>[biden, hunter, republikeinen, zoon, president...</td>\n",
+       "      <td>[Een rechter in de VS heeft voorkomen dat Hunt...</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>104</th>\n",
+       "      <td>103</td>\n",
+       "      <td>11</td>\n",
+       "      <td>103_economie_kwartaal_recessie_groei</td>\n",
+       "      <td>[economie, kwartaal, recessie, groei, cbs, kri...</td>\n",
+       "      <td>[De Nederlandse economie is sinds de coronacri...</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>105</th>\n",
+       "      <td>104</td>\n",
+       "      <td>11</td>\n",
+       "      <td>104_khalife_hij_gevangenis_seconden</td>\n",
+       "      <td>[khalife, hij, gevangenis, seconden, man, geva...</td>\n",
+       "      <td>[De man die gisteren is opgepakt voor de dodel...</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>106</th>\n",
+       "      <td>105</td>\n",
+       "      <td>10</td>\n",
+       "      <td>105_boeren_piekbelasters_stikstof_rvo</td>\n",
+       "      <td>[boeren, piekbelasters, stikstof, rvo, regelin...</td>\n",
+       "      <td>[In minder dan twee weken tijd hebben zich rui...</td>\n",
+       "    </tr>\n",
+       "    <tr>\n",
+       "      <th>107</th>\n",
+       "      <td>106</td>\n",
+       "      <td>10</td>\n",
+       "      <td>106_waters_man_meisjes_slachtoffers</td>\n",
+       "      <td>[waters, man, meisjes, slachtoffers, ontucht, ...</td>\n",
+       "      <td>[Een 55-jarige man uit Almere, die wordt verda...</td>\n",
+       "    </tr>\n",
+       "  </tbody>\n",
+       "</table>\n",
+       "<p>108 rows × 5 columns</p>\n",
+       "</div>"
+      ],
+      "text/plain": [
+       "     Topic  Count                                      Name  \\\n",
+       "0       -1   1533                         -1_de_een_het_van   \n",
+       "1        0    287   0_oekraïne_russische_rusland_oekraïense   \n",
+       "2        1    157                  1_dieren_dier_vogels_het   \n",
+       "3        2    149  2_partij_kamer_lijsttrekker_verkiezingen   \n",
+       "4        3    143                  3_je_vandaag_graden_hier   \n",
+       "..     ...    ...                                       ...   \n",
+       "103    102     11       102_biden_hunter_republikeinen_zoon   \n",
+       "104    103     11      103_economie_kwartaal_recessie_groei   \n",
+       "105    104     11       104_khalife_hij_gevangenis_seconden   \n",
+       "106    105     10     105_boeren_piekbelasters_stikstof_rvo   \n",
+       "107    106     10       106_waters_man_meisjes_slachtoffers   \n",
+       "\n",
+       "                                        Representation  \\\n",
+       "0        [de, een, het, van, in, dat, en, is, te, die]   \n",
+       "1    [oekraïne, russische, rusland, oekraïense, de,...   \n",
+       "2    [dieren, dier, vogels, het, wolf, een, de, in,...   \n",
+       "3    [partij, kamer, lijsttrekker, verkiezingen, tw...   \n",
+       "4    [je, vandaag, graden, hier, de, in, het, en, w...   \n",
+       "..                                                 ...   \n",
+       "103  [biden, hunter, republikeinen, zoon, president...   \n",
+       "104  [economie, kwartaal, recessie, groei, cbs, kri...   \n",
+       "105  [khalife, hij, gevangenis, seconden, man, geva...   \n",
+       "106  [boeren, piekbelasters, stikstof, rvo, regelin...   \n",
+       "107  [waters, man, meisjes, slachtoffers, ontucht, ...   \n",
+       "\n",
+       "                                   Representative_Docs  \n",
+       "0    [Vanavond om 21.00 uur is een groot deel van h...  \n",
+       "1    [zondag 27 augustus, 22:30'Russische zakenman ...  \n",
+       "2    [Het blauwtongvirus verspreidt zich in rap tem...  \n",
+       "3    [donderdag 21 september, 23:54Ook wachtgeld vo...  \n",
+       "4    [Goedemorgen! De eerste Nederlandse scouts die...  \n",
+       "..                                                 ...  \n",
+       "103  [Een rechter in de VS heeft voorkomen dat Hunt...  \n",
+       "104  [De Nederlandse economie is sinds de coronacri...  \n",
+       "105  [De man die gisteren is opgepakt voor de dodel...  \n",
+       "106  [In minder dan twee weken tijd hebben zich rui...  \n",
+       "107  [Een 55-jarige man uit Almere, die wordt verda...  \n",
+       "\n",
+       "[108 rows x 5 columns]"
+      ]
+     },
+     "execution_count": 63,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "nl_model.get_topic_info()"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "bertopic15",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.9.18"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 2
+}
