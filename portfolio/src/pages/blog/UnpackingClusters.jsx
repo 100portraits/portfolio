@@ -1,6 +1,10 @@
 import Template from "../Template"
 import {CodeBlock} from 'react-code-blocks'
 const UnpackingClusters = () => {
+    let codeblock1 =`# temperature
+
+import matplotlib.pyplot as plt
+plt.plot(temperature)`
     return (
         <Template 
             
@@ -27,7 +31,7 @@ const UnpackingClusters = () => {
                 
             ]}
             extracontent={<>
-                <CodeBlock text="import pandas as pd" language="python"/>
+                <CodeBlock text={codeblock1} language="python"/>
             </>}
         />
     );
