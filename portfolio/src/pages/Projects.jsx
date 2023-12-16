@@ -28,13 +28,24 @@ const Projects = () => {
             contentlist={[
                 {
                     title: '100portraits',
-                    link: '/projects/portraits'
+                    link: '/projects/portraits',
+                    description: '/portraits'
                 },
                 {
                     title: 'Innovative Education Toolkit',
-                    link: '/projects/toolkit'
+                    link: '/projects/toolkit',
+                    description: '/toolkit'
                 },
-            
+                {
+                    title: 'Web Apps',
+                    link: '/projects/webapps',
+                    description: '/webapps'
+                },
+                {
+                    title: 'Data Visualizations',
+                    link: '/projects/dataviz',
+                    description: '/dataviz'
+                }
                 
             ]}
             

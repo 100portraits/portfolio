@@ -15,25 +15,30 @@ const Home = () => {
             header='Sahir Dhanani Enarth'
             subheader='Photography / data science / design'
             subheader2='Computational Social Science @ University of Amsterdam'
-            
+
             contentlist={[
                 {
                     title: 'My work',
-                    link: '/work'
+                    link: '/work',
+                    description: '/work'
                 },
                 {
                     title: 'Projects',
-                    link: '/projects'
+                    link: '/projects',
+                    description: '/projects'
                 },
                 {
                     title: 'About me / skills',
-                    link: '/about'
+                    link: '/about',
+                    description: '/about'
                 },
                 
                 {
                     title: 'Blog',
-                    link: '/blog'
+                    link: '/blog',
+                    description: '/blog'
                 },
+
                 
             ]}
             

@@ -24,11 +24,14 @@ const Work = () => {
             contentlist={[
                 {
                     title: 'Research Assistant',
-                    link: '/work/research'
+                    link: '/work/research',
+                    description: '/research'
                 },
                 {
                     title: 'Photographer',
-                    link: '/work/photography'
+                    link: '/work/photography',
+                    description: '/photography'
+
                 },
             
                 

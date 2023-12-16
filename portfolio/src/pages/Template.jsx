@@ -5,8 +5,21 @@ import { DarkThemeToggle, Flowbite } from 'flowbite-react';
 import { useEffect } from 'react';
 import BreadcrumbGenerator from '../components/BreadcrumbGenerator';
 import { FaGithub, FaInstagram, FaLinkedin } from 'react-icons/fa';
+import { useState } from 'react';
 
-function Template({breadcrumb, header, subheader, subheader2, contentlist, extracontent}) {
+function Template({breadcrumb, header, subheader, subheader2, contentlist, extracontent, extracontentTop, ...props}) {
+    
+
+    const [showLinks, setShowLinks] = React.useState(() => {
+      return JSON.parse(localStorage.getItem('showLinks')) || false;
+    });
+
+    function toggleShowLinks() {
+      const newShowLinks = !showLinks;
+      setShowLinks(newShowLinks);
+      localStorage.setItem('showLinks', JSON.stringify(newShowLinks));
+  }
+
     useEffect(() => {
         const theme = localStorage.getItem('theme');
         
@@ -36,6 +49,8 @@ function Template({breadcrumb, header, subheader, subheader2, contentlist, extra
             }
           }
         };
+
+        
     
         // Create a new MutationObserver
         const htmlElement = document.querySelector('html');
@@ -51,8 +66,9 @@ function Template({breadcrumb, header, subheader, subheader2, contentlist, extra
         <div className=''>
             <div className='dark:bg-slate-800'>
                 <div className="min-h-screen dark:bg-slate-800 dark:text-white max-w-screen-md md:max-w-screen-lg p-10 mx-auto ">
-                    <div className='absolute top-0 right-0 m-5' >
-                        <DarkThemeToggle className='text-2xl'/>
+                    <div className='absolute top-0 right-0 flex items-center justify-end' >
+                        <a className='hover:underline cursor-pointer ' onClick={toggleShowLinks}>{!showLinks?"Show links":"Hide links"}</a>
+                        <DarkThemeToggle className='text-2xl m-5 text-gray-900 dark:text-white'/>
 
                     </div>
                     <div className="text-left mt-6 md:mt-14 mb-4 md:flex justify-between">
@@ -71,16 +87,17 @@ function Template({breadcrumb, header, subheader, subheader2, contentlist, extra
                           <Link target='_blank' to='https://www.linkedin.com/in/sahirde/'><FaLinkedin/></Link>
                         </div>
                     </div>
-
+                    {extracontentTop}
                     {contentlist.length === 0 ? 
                         <></> 
                         : 
                         <div className='grid grid-cols-1 md:grid-cols-2 gap-3 min-h-[40vh]'>
                             {contentlist.map((content) => (
-                                <Link to={content.link}><div className='bg-slate-100 dark:bg-slate-900 transition-all  h-full flex dark:hover:bg-slate-950 hover:bg-slate-200 group'>
-                                    <h1 className='text-2xl font-semibold m-10 group-hover:underline underline-offset-[6px]'>
+                                <Link to={content.link} target={content.linkExternal?"_blank":'_self'}><div className='bg-slate-100 dark:bg-slate-900 transition-all  h-full grow flex flex-col dark:hover:bg-slate-950 hover:bg-slate-200 group'>
+                                    <h1 className={'text-2xl font-semibold m-10 group-hover:underline underline-offset-[6px]'+ (content.description && showLinks?' mb-2':'')}>
                                         {content.title}<FaExternalLinkAlt className='inline text-sm ml-2'/>
                                     </h1>
+                                    {content.description && showLinks ? <h1 className='text-md mx-10 mb-12 md:mb-0'>{content.description}</h1> : <></>}
                                 </div></Link>
                             ))
                             }

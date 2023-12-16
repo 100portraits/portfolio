@@ -21,7 +21,7 @@ const Research = () => {
                     }
                 ]
             }
-            header='Research Assistanship'
+            header='Research Assistantship'
             subheader=''
             subheader2={<>This year from July to November, I worked on the research project <i>"How style impacts organization: modeling stylistic variations in the film art world"</i> with Dr. Rens Wilderom at the University of Amsterdam.</>}
             contentlist={[

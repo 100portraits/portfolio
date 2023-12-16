@@ -19,22 +19,37 @@ const Blog = () => {
     }
             header='Blog'
             subheader=''
-            subheader2="How I made/did some things. Enjoy reading!"
+            subheader2="How I did some things, some general thoughts. Enjoy reading!"
             
             contentlist={[
                 {
-                    title: 'Unpacking Clusters from BERTopic models',
-                    link: '/blog/unpacking-clusters'
+                    title: 'Unpacking clusters from BERTopic models',
+                    link: '/blog/unpacking-clusters',
+                    description: '/unpacking-clusters'
                 },
 
                 {
                     title: 'Making the portfolio',
-                    link: '/blog/making-of-portfolio'
+                    link: '/blog/making-of-portfolio',
+                    description: '/making-of-portfolio'
                 },
                 {
                     title: 'Making 100portraits',
-                    link: '/blog/making-of-100portraits'
+                    link: '/blog/making-of-100portraits',
+                    description: '/making-of-100portraits'
                 },
+                {
+                    title: 'Why Computational Social Science? Why Amsterdam?',
+                    link: '/blog/why-computational-social-science',
+                    description: '/why-computational-social-science'
+                },
+                {
+                    title: 'API hijacking for efficient web scraping',
+                    link: '/blog/api-hijacking',
+                    description: '/api-hijacking'
+                },
+
+
             
                 
             ]}
