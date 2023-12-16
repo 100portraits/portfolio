@@ -97,7 +97,7 @@ function Template({breadcrumb, header, subheader, subheader2, contentlist, extra
                                     <h1 className={'text-2xl font-semibold m-10 group-hover:underline underline-offset-[6px]'+ (content.description && showLinks?' mb-2':'')}>
                                         {content.title}<FaExternalLinkAlt className='inline text-sm ml-2'/>
                                     </h1>
-                                    {content.description && showLinks ? <h1 className='text-md mx-10 mb-12 md:mb-0'>{content.description}</h1> : <></>}
+                                    {content.description && showLinks ? <h1 className='text-md mx-10 mb-12 md:mb-12'>{content.description}</h1> : <></>}
                                 </div></Link>
                             ))
                             }
