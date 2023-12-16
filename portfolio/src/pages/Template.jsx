@@ -11,7 +11,7 @@ function Template({breadcrumb, header, subheader, subheader2, contentlist, extra
     
 
     const [showLinks, setShowLinks] = React.useState(() => {
-      return JSON.parse(localStorage.getItem('showLinks')) || false;
+      return JSON.parse(localStorage.getItem('showLinks')) || true;
     });
 
     function toggleShowLinks() {
@@ -23,6 +23,10 @@ function Template({breadcrumb, header, subheader, subheader2, contentlist, extra
     useEffect(() => {
         const theme = localStorage.getItem('theme');
         
+          if (!theme) {
+            localStorage.setItem('theme', 'dark');
+        }
+
         if (theme === 'dark') {
           document.querySelector('html').classList.add('dark');
           // Create a click event

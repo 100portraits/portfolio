@@ -21,6 +21,8 @@ import Dataviz from './pages/projects/Dataviz'
 import UnpackingClusters from './pages/blog/UnpackingClusters'
 import Making100portraits from './pages/blog/Making100portraits'
 import MakingPortfolio from './pages/blog/MakingPortfolio'
+import WhyCSSci from './pages/blog/WhyCSSci'
+import APIhijack from './pages/blog/APIhijack'
 
 function App() {
   
@@ -47,7 +49,8 @@ function App() {
       <Route path="/blog/making-of-100portraits" element={<Making100portraits />} />
       <Route path="/blog/making-of-portfolio" element={<MakingPortfolio />} />
       <Route path="/blog/unpacking-clusters" element={<UnpackingClusters />} />
-
+      <Route path="/blog/why-computational-social-science" element={<WhyCSSci />} />
+      <Route path="/blog/api-hijacking" element={<APIhijack />} />  
 
 
     </Routes>

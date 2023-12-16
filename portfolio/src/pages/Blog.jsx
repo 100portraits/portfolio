@@ -27,7 +27,11 @@ const Blog = () => {
                     link: '/blog/unpacking-clusters',
                     description: '/unpacking-clusters'
                 },
-
+                {
+                    title: 'API hijacking for efficient web scraping',
+                    link: '/blog/api-hijacking',
+                    description: '/api-hijacking'
+                },
                 {
                     title: 'Making the portfolio',
                     link: '/blog/making-of-portfolio',
@@ -43,11 +47,7 @@ const Blog = () => {
                     link: '/blog/why-computational-social-science',
                     description: '/why-computational-social-science'
                 },
-                {
-                    title: 'API hijacking for efficient web scraping',
-                    link: '/blog/api-hijacking',
-                    description: '/api-hijacking'
-                },
+                
 
 
             
