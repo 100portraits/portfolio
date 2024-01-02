@@ -21,14 +21,16 @@ const Webapps = () => {
         }
         header='Web Apps'
         subheader=''
-        subheader2={<>I like to make things that people can use. I've been learning web development with ReactJS, Svelte, Python Flask and various other technologies in Fall 2023.</>}
+        subheader2={<>I like to make things that people can use. I've been learning web development with ReactJS, Svelte, Python Flask and various other technologies since early 2023.</>}
 
         contentlist={[
+            
             {
-                title: 'Linker',
-                link: 'https://linker.sahir.nl',
+                title: 'Our Favourite Places',
+                link: 'https://places.sahir.nl',
                 linkExternal: true,
-                description: '[linker.sahir.nl]'
+
+                description: '[places.sahir.nl]'
             },
             {
                 title: 'Hierarchical Notes',
@@ -36,7 +38,13 @@ const Webapps = () => {
                 linkExternal: true,
 
                 description: '[notes.sahir.nl]'
-            }
+            },
+            {
+                title: 'Linker',
+                link: 'https://linker.sahir.nl',
+                linkExternal: true,
+                description: '[linker.sahir.nl]'
+            },
         ]}
 
         />
