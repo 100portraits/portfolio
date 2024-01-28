@@ -45,6 +45,12 @@ const Webapps = () => {
                 linkExternal: true,
                 description: '[linker.sahir.nl]'
             },
+            {
+                title: 'Where am I Next?',
+                link: 'https://where.sahir.nl',
+                linkExternal: true,
+                description: '[where.sahir.nl]'
+            },
         ]}
 
         />
