@@ -47,9 +47,9 @@ const Webapps = () => {
             },
             {
                 title: 'Where am I Next?',
-                link: 'https://where.sahir.nl',
+                link: 'https://where-am-i-next.pages.dev/',
                 linkExternal: true,
-                description: '[where.sahir.nl]'
+                description: '[where-am-i-next.pages.dev]'
             },
         ]}
 
