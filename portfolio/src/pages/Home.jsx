@@ -36,7 +36,8 @@ const Home = () => {
                 {
                     title: 'Blog',
                     link: '/blog',
-                    description: '/blog'
+                    description: '/blog',
+                    clickable: false
                 },
 
                 

@@ -97,12 +97,22 @@ function Template({breadcrumb, header, subheader, subheader2, contentlist, extra
                         : 
                         <div className='grid grid-cols-1 md:grid-cols-2 gap-3 min-h-[40vh]'>
                             {contentlist.map((content) => (
-                                <Link to={content.link} target={content.linkExternal?"_blank":'_self'}><div className='bg-slate-100 dark:bg-slate-900 transition-all  h-full grow flex flex-col dark:hover:bg-slate-950 hover:bg-slate-200 group'>
+                                content.clickable === false ? (
+                                  <div className='bg-slate-100 dark:bg-slate-900 transition-all h-full grow flex flex-col group cursor-not-allowed opacity-50'>
+                                    <h1 className={'text-2xl font-semibold m-10 underline-offset-[6px]' + (content.description && showLinks ? ' mb-2' : '')}>
+                                        {content.title}
+                                    </h1>
+                                    {content.description && showLinks ? <h1 className='text-md mx-10 mb-12 md:mb-12'>{content.description}</h1> : <></>}
+                                  </div>
+
+                                ) : (
+                                  <Link to={content.link} target={content.linkExternal?"_blank":'_self'}><div className='bg-slate-100 dark:bg-slate-900 transition-all  h-full grow flex flex-col dark:hover:bg-slate-950 hover:bg-slate-200 group'>
                                     <h1 className={'text-2xl font-semibold m-10 group-hover:underline underline-offset-[6px]'+ (content.description && showLinks?' mb-2':'')}>
                                         {content.title}<FaExternalLinkAlt className='inline text-sm ml-2'/>
                                     </h1>
                                     {content.description && showLinks ? <h1 className='text-md mx-10 mb-12 md:mb-12'>{content.description}</h1> : <></>}
-                                </div></Link>
+                                  </div></Link>
+                                )
                             ))
                             }
                         </div>

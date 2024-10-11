@@ -19,18 +19,29 @@ const Work = () => {
             }
             header='My Work'
             subheader=''
-            subheader2="Here's how I've kept busy since moving to Amsterdam in 2022."
+            subheader2="My work experience since moving to Amsterdam in 2022."
             
             contentlist={[
                 {
-                    title: 'Research Assistant',
-                    link: '/work/research',
-                    description: '/research'
+                    title: 'Research Assistant: IMDb Project',
+                    link: '/work/researchIMDb',
+                    description: '/researchIMDb'
+                },
+                {
+                    title: 'Research Assistant: Educational Trends',
+                    link: '/work/researchEdu',
+                    description: '/researchEdu'
                 },
                 {
                     title: 'Photographer',
                     link: '/work/photography',
                     description: '/photography'
+
+                },
+                {
+                    title: 'Partnerships (Computational Social Science)',
+                    link: '/work/partnerships',
+                    description: '/partnerships'    
 
                 },
             

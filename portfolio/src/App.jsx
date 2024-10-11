@@ -8,14 +8,18 @@ import Projects from './pages/Projects'
 import About from './pages/About'
 
 //work
-import Research from './pages/work/Research'
+import ResearchIMDb from './pages/work/ResearchIMDb'
+import ResearchEducationalTrends from './pages/work/ResearchEducationalTrends'
 import Photography from './pages/work/Photography'
+import Partnerships from './pages/work/Partnerships'
 
 //projects
 import Portraits from './pages/projects/Portraits'
 import Toolkit from './pages/projects/Toolkit'
 import Webapps from './pages/projects/Webapps'
 import Dataviz from './pages/projects/Dataviz'
+import BKhost from './pages/projects/BK-host'
+import TECmapper from './pages/projects/TEC-mapper'
 
 //blog
 import UnpackingClusters from './pages/blog/UnpackingClusters'
@@ -37,13 +41,19 @@ function App() {
       <Route path="/blog" element={<Blog />} />
 
       
-      <Route path="/work/research" element={<Research />} />
       <Route path="/work/photography" element={<Photography />} />
+      <Route path="/work/researchIMDb" element={<ResearchIMDb />} />
+      <Route path="/work/researchEdu" element={<ResearchEducationalTrends />} />
+      <Route path="/work/partnerships" element={<Partnerships />} />
+
 
       <Route path="/projects/portraits" element={<Portraits />} />
       <Route path="/projects/toolkit" element={<Toolkit />} />
       <Route path="/projects/webapps" element={<Webapps />} />
       <Route path="/projects/dataviz" element={<Dataviz />} />
+      <Route path="/projects/bk-host" element={<BKhost />} />
+      <Route path="/projects/tec-mapper" element={<TECmapper />} />
+
 
 
       <Route path="/blog/making-of-100portraits" element={<Making100portraits />} />
