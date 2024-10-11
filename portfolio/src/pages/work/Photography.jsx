@@ -28,7 +28,7 @@ const Photography = () => {
             }
             header='Photography'
             subheader=''
-            subheader2={<>I take portrait photos at the University of Amsterdam (on a freelance basis) using natural lighting and a small mirrorless camera with a 35mm fixed-length lens. Here is some of my work.</>}
+            subheader2={<>I take portrait photos at the University of Amsterdam (on a freelance basis) using natural lighting. Here is some of my work, created for programme testimonials or student brochures.</>}
             
             contentlist={[
                 
